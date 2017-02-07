@@ -1,0 +1,16 @@
+Import a .obj object file into the GraphicsTemplate provided.
+
+Render your scene using your own custom built GLSL shaders to do the following:
+		Apply a simple 'pig-skin' 2D texture map (.tga) to the surface of the object
+		Implement the Lambert Illumination model to calculate diffuse-reflection.
+
+Write your own heat-lamp shader to modify the final output colour values as follows:
+		object vertex normals pointing towards the heat lamp 	should gradually 'warm up'
+		object vertex normals pointing away from the heat lamp should gradually 'cool down'.
+		Use the principle of the inverse-square law to calculate the temperature at each point 
+on the surface of the object as a function of distance from the light source. This should 
+be treated as a rough approximation for determining the temperature at the surface.
+
+Apply a simple rule to each vertex on your object to control the warming-up and cooling-down effect of the heat lamp based on proximity and exposure. The effect you are looking to simulate is the gradual warming-up / cooling-down of vertices over time. (NB> these values will need to be stored with each vertex and read-in/updated by the vertex shader)
+
+Allow the user to adjust the position / direction of the heat-lamp (using the mouse) to demonstrate the warming-up / cooling-down effect.

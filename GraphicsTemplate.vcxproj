@@ -89,6 +89,7 @@
     <ClCompile Include="cRenderClass.cpp" />
     <ClCompile Include="cShader.cpp" />
     <ClCompile Include="GraphicsTemplate.cpp" />
+    <ClCompile Include="NA_Vector.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
@@ -99,6 +100,7 @@
     <ClInclude Include="cRenderClass.h" />
     <ClInclude Include="cShader.h" />
     <ClInclude Include="globals.h" />
+    <ClInclude Include="NA_Vector.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="textfile.h" />
   </ItemGroup>

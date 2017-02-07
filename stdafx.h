@@ -20,6 +20,8 @@
 #include "cShader.h"
 #include "cRenderClass.h"
 
+#include "NA_Vector.h"
+
 
 
 

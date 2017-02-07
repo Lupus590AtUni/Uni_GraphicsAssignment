@@ -1,4 +1,5 @@
-
+#include "stdafx.h"
+#include "NA_Vector.h"
 
 class cRenderClass
 {
@@ -6,6 +7,8 @@ public:
 
 	cRenderClass(const int, const int);
 	~cRenderClass();
+
+	NA_Vector mousePos;
 
 	void setViewport2D();
 
@@ -39,3 +42,13 @@ private:
 	sRGB	 m_colour;
 	bool	m_OPENGL_2_0_SUPPORTED;
 };
+
+extern void debugMouse();
+
+extern void adjustMouse();
+
+extern void mouse(int x, int y);
+
+extern void key(unsigned char c, int x, int y);
+
+extern void click(int button, int state, int x, int y);

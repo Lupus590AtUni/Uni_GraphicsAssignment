@@ -4,6 +4,8 @@
 // includes 
 //////////////////////////////////////////////////////////////////////////////////////////
 #include "stdafx.h"
+#include <iostream>
+using std::cout;
 
 //////////////////////////////////////////////////////////////////////////////////////////
 // Declarations 
@@ -106,6 +108,12 @@ void cRenderClass::create(int argc, _TCHAR* argv[])
 
 	// set display callback for current window
 	glutDisplayFunc(renderScene);	
+  
+    // This block copied from HPC boids cpu
+    glutMouseFunc(click);
+	glutKeyboardFunc(key);
+	glutMotionFunc(mouse);
+	glutPassiveMotionFunc(mouse);
 
 	// set up the global idle callback
 	glutIdleFunc(update);
@@ -304,4 +312,69 @@ void winReshapeFunc(GLint w, GLint h)
 		(GLsizei) SCREEN_WIDTH,	// viewport width
 		(GLsizei) SCREEN_HEIGHT	// viewport height
 	);
+}
+
+// All of below copied from HPC boids cpu
+
+int mouseRawX, mouseRawY;
+
+
+void debugMouse()
+{
+	cout << "Mouse:\n";
+	cout << " raw pos : " << mouseRawX << ", " << mouseRawY << "\n";
+	cout << " adjusted pos : " << graphics.mousePos.x << ", " << graphics.mousePos.y << "\n";
+	
+	/*
+	//draw a dot under the mouse for debugging
+	graphics.setColour(0.0f, 0.0f, 1.0f);
+	graphics.setPointSize(3);
+	graphics.drawPixel(graphics.mousePos.x, graphics.mousePos.y);
+	graphics.setColour(1.0f, 0.0f, 0.0f);
+	graphics.setPointSize(1);
+	graphics.drawPixel(graphics.mousePos.x, graphics.mousePos.y);
+	*/
+}
+
+void adjustMouse()
+{
+	graphics.mousePos.y = -graphics.mousePos.y + SCREEN_HEIGHT;
+}
+
+void mouse(int x, int y)
+{
+	mouseRawX = x;
+	mouseRawY = y;
+
+	graphics.mousePos.x = x;
+	graphics.mousePos.y = y;
+
+	adjustMouse();
+}
+
+void key(unsigned char c, int x, int y)
+{
+
+}
+
+void click(int button, int state, int x, int y)
+{
+	//cout << "click\n";
+	if (button == GLUT_LEFT_BUTTON)
+	{
+		//cout << "left mouse\n";
+		if (state == GLUT_DOWN)
+		{
+			//do stuff when mouse down
+			//cout << "down\n";
+			
+			mouse(x, y);
+			//cout << "mouseIsScary " << mouseIsScary << "\n";
+		}
+		else
+		{
+			//do stuff when mouse up
+		}
+	}
+
 }

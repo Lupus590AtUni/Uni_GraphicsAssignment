@@ -10,9 +10,14 @@
 #include <sstream>
 #include <vector>
 
+#define GLM_FORCE_RADIANS 
+#include "glm/glm.hpp"
+#include "glm/gtc/matrix_transform.hpp" 
+#include "glm/gtc/type_ptr.hpp"
+
 using namespace std;
 
-void load_obj(const char* filename, vector<NA_Vector> &vertices, vector<NA_Vector> &normals, vector<GLushort> &elements)
+void load_obj(const char* filename, vector<glm::vec4> &vertices, vector<glm::vec3> &normals, vector<GLushort> &elements)
 {
 	ifstream in(filename, ios::in);
 	if (!in)

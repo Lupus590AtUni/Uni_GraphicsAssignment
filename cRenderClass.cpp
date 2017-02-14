@@ -217,6 +217,7 @@ void cRenderClass::render( int pass )
 	}
 	else
 	{
+		//TODO: figure out how to do stuff for the shader here
 		// flatten the viewport - i.e. convert to image space
 		setViewport2D();
 

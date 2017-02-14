@@ -1,9 +1,8 @@
-uniform float	Intensity;
+uniform vec2	lightPos;
 
 varying vec2 	texCoord;
 
 void main(void)
 {	
-	gl_Position 	= ftransform();
-	texCoord	= gl_MultiTexCoord0.xy;
+	
 }

@@ -51,13 +51,18 @@ void update()
 //////////////////////////////////////////////////////////////////////////////////////////
 int _tmain(int argc, _TCHAR* argv[])
 {	
+	vector<glm::vec4>* vertices = new vector<glm::vec4>;
+	vector<glm::vec3>* normals = new vector<glm::vec3>;
+	vector<GLushort>* element = new vector<GLushort>;
+	load_obj("Pig\\pig.obj", *vertices, *normals, *element);
+
 	// init glut stuff..
-	graphics.create(argc, argv);
+	//graphics.create(argc, argv);
 
 	// good place for one-off initialisations and objects creation..
 
 	// enter game loop..
-	graphics.loop();	
+	//graphics.loop();	
 
 	return 0;
 }

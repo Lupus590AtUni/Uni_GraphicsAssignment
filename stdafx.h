@@ -23,3 +23,18 @@
 #include "NA_Vector.h"
 
 
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+#include <iostream>
+#include <fstream>
+#include <sstream>
+#include <vector>
+
+using std::vector;
+
+#define GLM_FORCE_RADIANS 
+#include "glm/glm.hpp"
+#include "glm/gtc/matrix_transform.hpp" 
+#include "glm/gtc/type_ptr.hpp"

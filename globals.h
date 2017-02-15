@@ -1,9 +1,27 @@
+#include "stdafx.h"
+
+#include <stdio.h>
+#include <stdlib.h>
+#include <math.h>
+#include <iostream>
+#include <fstream>
+#include <sstream>
+#include <vector>
+
+#define GLM_FORCE_RADIANS 
+#include "glm/glm.hpp"
+#include "glm/gtc/matrix_transform.hpp" 
+#include "glm/gtc/type_ptr.hpp"
+
+using std::vector;
+
 //////////////////////////////////////////////////////////////////////////////////////////
 // externals 
 //////////////////////////////////////////////////////////////////////////////////////////
 extern void winReshapeFunc(GLint w, GLint h);
 extern void renderScene();
 extern void update();
+extern void load_obj(const char* filename, vector<glm::vec4> &vertices, vector<glm::vec3> &normals, vector<GLushort> &elements);
 
 //////////////////////////////////////////////////////////////////////////////////////////
 // constants 

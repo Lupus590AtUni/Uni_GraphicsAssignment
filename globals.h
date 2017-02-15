@@ -21,7 +21,6 @@ using std::vector;
 extern void winReshapeFunc(GLint w, GLint h);
 extern void renderScene();
 extern void update();
-extern void load_obj(const char* filename, vector<glm::vec4> &vertices, vector<glm::vec3> &normals, vector<GLushort> &elements);
 
 //////////////////////////////////////////////////////////////////////////////////////////
 // constants 
@@ -29,7 +28,6 @@ extern void load_obj(const char* filename, vector<glm::vec4> &vertices, vector<g
 const int SCREEN_WIDTH	= 500;
 const int SCREEN_HEIGHT = 500;
 
-const int PASSES		= 2;
 
 typedef unsigned int	u32	;
 

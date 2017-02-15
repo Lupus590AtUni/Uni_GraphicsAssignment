@@ -15,22 +15,8 @@ extern cRenderClass graphics;
 //////////////////////////////////////////////////////////////////////////////////////////
 void renderScene()
 {
-	int pass = 0;
-
-	// set a colour
-	graphics.colour( 0,1,0 );
 	
-	// set pixel size..
-	graphics.pointSize(10);
-
-	// draw to an off screen buffer
-	graphics.drawPixel( 200, 200 );
-
-	while( pass < PASSES )
-	{
-		// render first pass
-		graphics.render(pass++);
-	}
+	graphics.render();
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////
@@ -51,18 +37,18 @@ void update()
 //////////////////////////////////////////////////////////////////////////////////////////
 int _tmain(int argc, _TCHAR* argv[])
 {	
-	vector<glm::vec4>* vertices = new vector<glm::vec4>;
+	/*vector<glm::vec4>* vertices = new vector<glm::vec4>;
 	vector<glm::vec3>* normals = new vector<glm::vec3>;
-	vector<GLushort>* element = new vector<GLushort>;
-	load_obj("Pig\\pig.obj", *vertices, *normals, *element);
+	vector<GLushort>* element = new vector<GLushort>;*/
+	
 
 	// init glut stuff..
-	//graphics.create(argc, argv);
+	graphics.create(argc, argv);
 
 	// good place for one-off initialisations and objects creation..
 
 	// enter game loop..
-	//graphics.loop();	
+	graphics.loop();	
 
 	return 0;
 }

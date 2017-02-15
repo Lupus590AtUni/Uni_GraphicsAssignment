@@ -16,8 +16,7 @@ public:
 	void initShaders();
 	void loop();
 
-	void render(int);
-	void render2(int);
+	void render();
 	void drawPixel(int, int);	
 
 	inline void clear(){memset( m_buffer, 0, sizeof(float)*m_sw*m_sh*4 );}

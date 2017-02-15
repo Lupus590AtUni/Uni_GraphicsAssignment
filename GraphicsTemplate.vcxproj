@@ -89,7 +89,6 @@
     <ClCompile Include="cRenderClass.cpp" />
     <ClCompile Include="cShader.cpp" />
     <ClCompile Include="GraphicsTemplate.cpp" />
-    <ClCompile Include="NA_ObjLoader.cpp" />
     <ClCompile Include="NA_Vector.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>

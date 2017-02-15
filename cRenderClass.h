@@ -1,6 +1,12 @@
 #include "stdafx.h"
-#include "NA_Vector.h"
+#define GLM_FORCE_RADIANS 
+#include "glm/glm.hpp"
+#include "glm/gtc/matrix_transform.hpp" 
+#include "glm/gtc/type_ptr.hpp"
 
+using glm::vec2;
+using glm::vec3;
+using glm::vec4;
 class cRenderClass
 {
 public:
@@ -8,7 +14,7 @@ public:
 	cRenderClass(const int, const int);
 	~cRenderClass();
 
-	NA_Vector mousePos;
+	vec2 mousePos;
 
 	void setViewport2D();
 

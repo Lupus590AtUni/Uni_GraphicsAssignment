@@ -193,11 +193,17 @@ void cRenderClass::render( )
 	// copy contents from my own buffer
 	glDrawPixels( m_sw, m_sh, GL_RGBA, GL_FLOAT, m_buffer );
 
+	//TODO: draw all objects
+
+	extern NA_HeatLamp heatLamp;
+
+	heatLamp.draw();
 
 	
 	// SHADER STUFF
 	
 	//TODO: figure out how to do stuff for the shader here
+
 	// flatten the viewport - i.e. convert to image space
 	setViewport2D();
 

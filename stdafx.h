@@ -20,8 +20,7 @@
 #include "cShader.h"
 #include "cRenderClass.h"
 
-#include "NA_Vector.h"
-
+#include "NA_HeatLamp.h"
 
 
 #include <stdio.h>
@@ -38,3 +37,7 @@ using std::vector;
 #include "glm/glm.hpp"
 #include "glm/gtc/matrix_transform.hpp" 
 #include "glm/gtc/type_ptr.hpp"
+
+using glm::vec2;
+using glm::vec3;
+using glm::vec4;

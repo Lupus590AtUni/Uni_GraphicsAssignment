@@ -22,9 +22,15 @@ void renderScene()
 //////////////////////////////////////////////////////////////////////////////////////////
 // update() - update function
 //////////////////////////////////////////////////////////////////////////////////////////
+NA_HeatLamp heatLamp;
 void update()
 {
 	// add any update code here...
+
+	heatLamp.pos.x = graphics.mousePos.x;
+	heatLamp.pos.y = graphics.mousePos.y;
+	heatLamp.pos.z = 0;
+
 
 	// always re-render the scene..
 	renderScene();

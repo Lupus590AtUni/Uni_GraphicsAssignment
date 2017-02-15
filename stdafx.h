@@ -30,6 +30,7 @@
 #include <fstream>
 #include <sstream>
 #include <vector>
+#include "NA_Pig.h"
 
 using std::vector;
 

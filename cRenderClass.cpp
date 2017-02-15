@@ -196,8 +196,10 @@ void cRenderClass::render( )
 	//TODO: draw all objects
 
 	extern NA_HeatLamp heatLamp;
+	extern NA_Pig pig;
 
 	heatLamp.draw();
+	pig.draw();
 
 	
 	// SHADER STUFF

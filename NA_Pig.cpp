@@ -21,7 +21,7 @@ void NA_Pig::draw()
 	
 	glTranslatef(pos.x, pos.y, pos.z);
 
-	//TODO: activate shader here?
+	
 	extern cRenderClass graphics;
 
 	cShader *pList = graphics.ShaderInfo.getList();

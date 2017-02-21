@@ -193,7 +193,7 @@ void cRenderClass::render( )
 	// copy contents from my own buffer
 	glDrawPixels( m_sw, m_sh, GL_RGBA, GL_FLOAT, m_buffer );
 
-	//TODO: draw all objects
+	
 
 	extern NA_HeatLamp heatLamp;
 	extern NA_Pig pig;

@@ -8,5 +8,7 @@ public:
 	void draw();
 	vec3 pos;
 
+	int pigShader = 0;
+
 };
 

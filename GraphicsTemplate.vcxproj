@@ -112,8 +112,6 @@
   <ItemGroup>
     <None Include="shaders\heat-lamp.frag" />
     <None Include="shaders\heat-lamp.vert" />
-    <None Include="shaders\intensity.frag" />
-    <None Include="shaders\intensity.vert" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

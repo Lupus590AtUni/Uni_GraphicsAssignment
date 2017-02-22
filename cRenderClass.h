@@ -37,7 +37,7 @@ public:
 	inline void OpenGL2_0(bool value){m_OPENGL_2_0_SUPPORTED = value;}
 	inline bool OpenGL2_0(){return m_OPENGL_2_0_SUPPORTED;}
 	
-	class cShaderInfo	ShaderInfo;
+	
 
 private:
 

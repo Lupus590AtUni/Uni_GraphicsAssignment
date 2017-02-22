@@ -87,7 +87,6 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="cRenderClass.cpp" />
-    <ClCompile Include="cShader.cpp" />
     <ClCompile Include="GraphicsTemplate.cpp" />
     <ClCompile Include="NA_HeatLamp.cpp" />
     <ClCompile Include="NA_Pig.cpp" />
@@ -99,7 +98,6 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cRenderClass.h" />
-    <ClInclude Include="cShader.h" />
     <ClInclude Include="globals.h" />
     <ClInclude Include="NA_HeatLamp.h" />
     <ClInclude Include="NA_Pig.h" />

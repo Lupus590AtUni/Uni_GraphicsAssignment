@@ -1,7 +1,6 @@
 #include "stdafx.h"
 #include "NA_Pig.h"
 #include "cRenderClass.h"
-#include "cShader.h"
 
 NA_Pig::NA_Pig()
 {
@@ -26,9 +25,10 @@ void NA_Pig::draw()
 
 	//TODO: load up and configure shader
 
-	glUniform1f(glGetAttribLocation(shaderID, variableNameAsString), value);
+	//glUniform1fv(glGetAttribLocation(shaderID, variableNameAsString), sizeOfArray, valueAsArray)
+	//glUniform1f(glGetAttribLocation(shaderID, variableNameAsString), value);
 
-	glUseProgram(shaderID);
+	//glUseProgram(shaderID);
 
 	glutSolidSphere(12, 120, 2);
 

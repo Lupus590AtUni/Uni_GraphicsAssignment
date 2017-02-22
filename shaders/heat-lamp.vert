@@ -1,7 +1,7 @@
 uniform vec3	lightPos;
 uniform float	lightIntensity;
 
-unifirm vec3	pigPos;
+uniform vec3	pigPos;
 
 varying vec2 	texCoord;
 

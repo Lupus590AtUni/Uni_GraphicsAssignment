@@ -24,8 +24,11 @@ void NA_Pig::draw()
 	
 	extern cRenderClass graphics;
 
-	cShader *pList = graphics.ShaderInfo.getList();
-	glUseProgram(pList[pigShader].program());
+	//TODO: load up and configure shader
+
+	glUniform1f(glGetAttribLocation(shaderID, variableNameAsString), value);
+
+	glUseProgram(shaderID);
 
 	glutSolidSphere(12, 120, 2);
 

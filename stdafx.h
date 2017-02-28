@@ -31,6 +31,10 @@
 #include <vector>
 #include "NA_Pig.h"
 
+#include <string>
+
+using std::string;
+
 using std::vector;
 
 #define GLM_FORCE_RADIANS 

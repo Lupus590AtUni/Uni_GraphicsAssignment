@@ -40,3 +40,44 @@ void NA_Pig::draw()
 	glTranslatef(-pos.x, -pos.y, -pos.z);
 	
 }
+
+void NA_Pig::loadShader()
+{
+	//https://www.opengl.org/sdk/docs/tutorials/ClockworkCoders/loading.php
+
+	const string shaderPath = "\\Shader Files\\heat-lamp";
+	const string vertexShaderExtention = ".vert";
+	const string fragmentShaderExtention = ".frag";
+
+	// Create containers for shaders
+	//TODO: these may need to be in the class
+	GLuint vertexShaderObject = glCreateShader(GL_VERTEX_SHADER);
+	GLuint fragmentShaderObject = glCreateShader(GL_FRAGMENT_SHADER);
+
+	//TODO: read in shader from file
+
+	// Attach source files
+	glShaderSourceARB(vertexShaderObject, 1, &VertexShaderSource, &vlength);
+	glShaderSourceARB(fragmentShaderObject, 1, &FragmentShaderSource, &flength);
+
+	//Compile the shaders
+	glCompileShaderARB(vertexShaderObject);
+	glCompileShaderARB(fragmentShaderObject);
+
+	//Check that compile was ok
+	GLint vertexCompiled;
+
+	glGetShaderiv(vertexShaderObject, GL_COMPILE_STATUS, &vertexCompiled); //https://www.khronos.org/opengl/wiki/Shader_Compilation
+	if (vertexCompiled == GL_FALSE)
+	{
+		// yes it compiled!
+	}
+
+	GLint fragmentCompiled;
+
+	glGetShaderiv(fragmentShaderObject, GL_COMPILE_STATUS, &fragmentCompiled); //https://www.khronos.org/opengl/wiki/Shader_Compilation
+	if (fragmentCompiled == GL_FALSE)
+	{
+		// yes it compiled!
+	}
+}

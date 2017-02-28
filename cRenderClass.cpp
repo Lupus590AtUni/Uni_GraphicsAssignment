@@ -286,7 +286,7 @@ void mouse(int x, int y)
 
 void key(unsigned char c, int x, int y)
 {
-
+	//TODO: reload shader?
 }
 
 void click(int button, int state, int x, int y)

@@ -30,6 +30,8 @@ void NA_Pig::draw()
 
 	//glUseProgram(shaderID);
 
+	//TODO: somewhere I have to map a texture
+
 	glutSolidSphere(12, 120, 2);
 
 	glUseProgram(0); //disable pig heatlamp shader

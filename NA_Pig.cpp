@@ -31,6 +31,8 @@ void NA_Pig::draw()
 	//glUseProgram(shaderID);
 
 	//TODO: somewhere I have to map a texture
+	//TODO: and load a pig with texture
+	//TODO: and render that pig - I hate graphics
 
 	glutSolidSphere(12, 120, 2);
 

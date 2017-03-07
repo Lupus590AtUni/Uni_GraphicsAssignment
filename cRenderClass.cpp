@@ -54,7 +54,7 @@ void cRenderClass::loop()
 	glutMainLoop();
 }
 
-
+extern cShaderInfo	ShaderInfo;
 
 //////////////////////////////////////////////////////////////////////////////////////////
 // initShaders() - init GLSL shaders
@@ -79,6 +79,7 @@ void cRenderClass::initShaders()
 		m_OPENGL_2_0_SUPPORTED = false;
 	}
 
+	ShaderInfo.create();
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////
@@ -200,9 +201,25 @@ void cRenderClass::render( )
 	heatLamp.draw();
 	pig.draw();
 
-	
-	
-	
+	//Shader Stuff
+	//cShader *pList = ShaderInfo.getList();
+	//int shdr = 0;
+
+	//if (shdr >= ShaderInfo.shaderCount())
+	//{
+	//	printf("Error: Can't access requested shader\n");
+	//	shdr = 0;
+	//}
+
+	//// enable shader program..
+	//glUseProgram(pList[shdr].program());
+
+	//float intensity = 0.25f;
+
+	//glUniform1i(pList[shdr].get_grabLoc(), (int)m_tex[0]);
+	//glUniform1f(pList[shdr].intensity(), intensity);
+	//
+	//glUseProgram(0);//disable the shader
 
 	// finally swap the buffers of the current window
 	glutSwapBuffers();

@@ -87,6 +87,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="cRenderClass.cpp" />
+    <ClCompile Include="cShader.cpp" />
     <ClCompile Include="GraphicsTemplate.cpp" />
     <ClCompile Include="NA_HeatLamp.cpp" />
     <ClCompile Include="NA_Pig.cpp" />
@@ -98,6 +99,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="cRenderClass.h" />
+    <ClInclude Include="cShader.h" />
     <ClInclude Include="globals.h" />
     <ClInclude Include="NA_HeatLamp.h" />
     <ClInclude Include="NA_Pig.h" />
@@ -110,6 +112,8 @@
   <ItemGroup>
     <None Include="shaders\heat-lamp.frag" />
     <None Include="shaders\heat-lamp.vert" />
+    <None Include="shaders\intensity.frag" />
+    <None Include="shaders\intensity.vert" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

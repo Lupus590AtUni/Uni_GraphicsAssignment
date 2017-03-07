@@ -17,6 +17,7 @@
 #include "GL/glut.h"
 #include "textfile.h"
 #include "globals.h"
+#include "cShader.h"
 #include "cRenderClass.h"
 
 #include "NA_HeatLamp.h"

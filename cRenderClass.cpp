@@ -265,13 +265,14 @@ void winReshapeFunc(GLint w, GLint h)
 
 // All of below copied from HPC boids cpu
 
-int mouseRawX, mouseRawY;
+
 
 
 void debugMouse()
 {
+	extern cRenderClass graphics;
 	cout << "Mouse:\n";
-	cout << " raw pos : " << mouseRawX << ", " << mouseRawY << "\n";
+	cout << " raw pos : " << graphics.mouseRaw.x << ", " << graphics.mouseRaw.y << "\n";
 	cout << " adjusted pos : " << graphics.mousePos.x << ", " << graphics.mousePos.y << "\n";
 	
 	/*
@@ -285,20 +286,50 @@ void debugMouse()
 	*/
 }
 
-void adjustMouse()
-{
-	graphics.mousePos.y = -graphics.mousePos.y + SCREEN_HEIGHT;
-}
+
 
 void mouse(int x, int y)
 {
-	mouseRawX = x;
-	mouseRawY = y;
+	graphics.mouseRaw.x = x;
+	graphics.mouseRaw.y = y;
 
-	graphics.mousePos.x = x;
-	graphics.mousePos.y = y;
+	//https://www.gamedev.net/topic/507797-moving-objects-with-the-mouse-in-3d/
+	//https://www.khronos.org/registry/OpenGL-Refpages/gl2.1/xhtml/gluUnProject.xml
+	// https://www.khronos.org/registry/OpenGL-Refpages/gl2.1/xhtml/glGet.xml
 
-	adjustMouse();
+	GLdouble* modelMatix = NULL;
+	GLdouble* projMatix = NULL;
+	GLint* viewport = NULL;
+
+	glGetDoublev(GL_MODELVIEW_MATRIX, modelMatix);
+	glGetDoublev(GL_PROJECTION_MATRIX, projMatix);
+	glGetIntegerv(GL_VIEWPORT, viewport);
+
+
+	GLdouble* fixedX = new GLdouble;
+	GLdouble* fixedY = new GLdouble;
+	GLdouble* fixedZ = new GLdouble;
+	*fixedX = 0;
+	*fixedY = 0;
+	*fixedZ = 0;
+
+	if (gluUnProject(graphics.mouseRaw.x, graphics.mouseRaw.y, 0, modelMatix, projMatix, viewport, fixedX, fixedY, fixedZ) == GL_FALSE)
+	{
+		cout << "cRenderClass - mouse func - gluUnProject returned false\n";
+		delete fixedX;
+		delete fixedY;
+		delete fixedY;
+		return;
+	}
+
+
+	graphics.mousePos.x = (float)*fixedX;
+	graphics.mousePos.y = (float)*fixedY;
+
+	delete fixedX;
+	delete fixedY;
+	delete fixedY;
+
 }
 
 void key(unsigned char c, int x, int y)

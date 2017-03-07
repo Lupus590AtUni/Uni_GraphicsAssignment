@@ -15,7 +15,8 @@ public:
 	cRenderClass(const int, const int);
 	~cRenderClass();
 
-	vec2 mousePos;
+	vec2 mousePos; //the mouse position in object space
+	vec2 mouseRaw; //the mouse position in screen space
 
 	void setViewport2D();
 
@@ -50,8 +51,6 @@ private:
 };
 
 extern void debugMouse();
-
-extern void adjustMouse();
 
 extern void mouse(int x, int y);
 

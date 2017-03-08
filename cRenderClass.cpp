@@ -301,6 +301,8 @@ void mouse(int x, int y)
 	GLdouble* projMatix = NULL;
 	GLint* viewport = NULL;
 
+	// these give null
+	//TODO: patch leak
 	glGetDoublev(GL_MODELVIEW_MATRIX, modelMatix);
 	glGetDoublev(GL_PROJECTION_MATRIX, projMatix);
 	glGetIntegerv(GL_VIEWPORT, viewport);
@@ -313,7 +315,7 @@ void mouse(int x, int y)
 	*fixedY = 0;
 	*fixedZ = 0;
 
-	if (gluUnProject(graphics.mouseRaw.x, graphics.mouseRaw.y, 0, modelMatix, projMatix, viewport, fixedX, fixedY, fixedZ) == GL_FALSE)
+	if (gluUnProject(graphics.mouseRaw.x, graphics.mouseRaw.y, 0, modelMatix, projMatix, viewport, fixedX, fixedY, fixedZ) == GL_FALSE) //error is here
 	{
 		cout << "cRenderClass - mouse func - gluUnProject returned false\n";
 		delete fixedX;

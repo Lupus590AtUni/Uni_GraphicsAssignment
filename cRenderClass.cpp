@@ -297,9 +297,9 @@ void mouse(int x, int y)
 	//https://www.khronos.org/registry/OpenGL-Refpages/gl2.1/xhtml/gluUnProject.xml
 	// https://www.khronos.org/registry/OpenGL-Refpages/gl2.1/xhtml/glGet.xml
 
-	GLdouble* modelMatix = NULL;
-	GLdouble* projMatix = NULL;
-	GLint* viewport = NULL;
+	GLdouble modelMatix[16];
+	GLdouble projMatix[16];
+	GLint viewport[4];
 
 	// these give null
 	//TODO: patch leak
@@ -331,6 +331,8 @@ void mouse(int x, int y)
 	delete fixedX;
 	delete fixedY;
 	delete fixedY;
+
+	//TODO: why does this break on return?
 
 }
 

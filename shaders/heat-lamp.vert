@@ -20,6 +20,7 @@ void main(void)
 
 	effectiveIntesity = lightIntensity/(4*pi*r*r)
 	
+	//TODO: use GL light as can interigate in here
 
 	//TODO: change the colour of the pixel
 }

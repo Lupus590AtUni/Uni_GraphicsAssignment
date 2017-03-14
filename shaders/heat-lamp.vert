@@ -1,5 +1,7 @@
 uniform vec3	lightPos; 	//TODO: use GL light as can interigate in here
-uniform float	lightIntensity;
+uniform float	Intensity;
+
+uniform sampler2D	grabTexture;
 
 uniform vec3	pigPos; //TODO: can I interigate for this too, or do I have to pass it?
 

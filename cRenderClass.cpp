@@ -301,8 +301,7 @@ void mouse(int x, int y)
 	GLdouble projMatix[16];
 	GLint viewport[4];
 
-	// these give null
-	//TODO: patch leak
+	
 	glGetDoublev(GL_MODELVIEW_MATRIX, modelMatix);
 	glGetDoublev(GL_PROJECTION_MATRIX, projMatix);
 	glGetIntegerv(GL_VIEWPORT, viewport);

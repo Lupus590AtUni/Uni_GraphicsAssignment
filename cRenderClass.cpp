@@ -290,6 +290,8 @@ void debugMouse()
 
 void mouse(int x, int y)
 {
+	
+
 	graphics.mouseRaw.x = x;
 	graphics.mouseRaw.y = y;
 
@@ -306,32 +308,27 @@ void mouse(int x, int y)
 	glGetDoublev(GL_PROJECTION_MATRIX, projMatix);
 	glGetIntegerv(GL_VIEWPORT, viewport);
 
+	
 
-	GLdouble* fixedX = new GLdouble;
-	GLdouble* fixedY = new GLdouble;
-	GLdouble* fixedZ = new GLdouble;
-	*fixedX = 0;
-	*fixedY = 0;
-	*fixedZ = 0;
+	GLdouble fixedX;
+	GLdouble fixedY;
+	GLdouble fixedZ;
 
-	if (gluUnProject(graphics.mouseRaw.x, graphics.mouseRaw.y, 0, modelMatix, projMatix, viewport, fixedX, fixedY, fixedZ) == GL_FALSE) //error is here
+	
+
+	if (gluUnProject(graphics.mouseRaw.x, graphics.mouseRaw.y, 0, modelMatix, projMatix, viewport, &fixedX, &fixedY, &fixedZ) == GL_FALSE)
 	{
 		cout << "cRenderClass - mouse func - gluUnProject returned false\n";
-		delete fixedX;
-		delete fixedY;
-		delete fixedY;
 		return;
 	}
 
+	
 
-	graphics.mousePos.x = (float)*fixedX;
-	graphics.mousePos.y = (float)*fixedY;
+	graphics.mousePos.x = (float)fixedX;
+	graphics.mousePos.y = (float)fixedY*-1;
 
-	delete fixedX;
-	delete fixedY;
-	delete fixedY;
 
-	//TODO: why does this break on return?
+	
 
 }
 

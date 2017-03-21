@@ -14,7 +14,9 @@ void main(void)
 	float effectiveIntesity;
 	if(dot(normal, lightPos) > 0)//facing the light
 	{
-		float rSqrd = (pigPos.x-lightPos.x)+(pigPos.y-lightPos.y)+(pigPos.z-lightPos.z); //not sqrt-ing as it will be sqrd again anyways
+		float rSqrd = (pigPos.x-
+		
+		Pos.x)+(pigPos.y-lightPos.y)+(pigPos.z-lightPos.z); //not sqrt-ing as it will be sqrd again anyways
 		effectiveIntesity = lightIntensity/(4*pi*rSqrd); //rSqrd == r*r
 	}
 	else

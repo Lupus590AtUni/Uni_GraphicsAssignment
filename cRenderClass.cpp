@@ -313,9 +313,8 @@ void mouse(int x, int y)
 	//http://www.glprogramming.com/red/chapter05.html
 	GLfloat mat_specular[] = { 1.0, 1.0, 1.0, 1.0 };
 	GLfloat mat_shininess[] = { 50.0 };
-	GLfloat light1_position[] = { graphics.mousePos.x , graphics.mousePos.y, 1.0, 0.0 };
-	GLfloat light0_position[] = { 10.0 , 0.0, 0.0, 0.0 };
-
+	GLfloat light0_position[] = { graphics.mousePos.x , graphics.mousePos.y, 1.0, 0.0 };
+	GLfloat light1_position[] = { 10.0 , 0.0, 0.0, 0.0 };
 
 	glClearColor(0.0, 0.0, 0.0, 0.0);
 	glShadeModel(GL_SMOOTH);

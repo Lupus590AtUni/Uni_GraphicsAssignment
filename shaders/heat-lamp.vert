@@ -17,10 +17,9 @@ void main(void)
 	{
 	}
 	
-	//TODO: calculate r properly
-	float r = distance between lightPos and pigPos;
-
-	effectiveIntesity = lightIntensity/(4*pi*r*r)
+	
+	float rSqrd = (pigPos.x-lightPos.x)+(pigPos.y-lightPos.y)+(pigPos.z-lightPos.z); //not sqrt-ing as it will be sqrd again anyways
+	effectiveIntesity = lightIntensity/(4*pi*rSqrd); //rSqrd == r*r
 	
 
 	//TODO: change the colour of the pixel

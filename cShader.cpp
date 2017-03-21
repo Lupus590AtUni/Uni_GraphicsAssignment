@@ -1,11 +1,13 @@
 #include "stdafx.h"
 
-#define SHADER_COUNT	1
+#define SHADER_COUNT	2
 
 char *vShader[] = {	"shaders\\intensity.vert",	// FLAG_MAPS_INTENSITYS
+					"shaders\\heat-lamp.vert",
 };
 
 char *fShader[] = {	"shaders\\intensity.frag",	// FLAG_MAPS_INTENSITY
+					"shaders\\heat-lamp.frag",
 };
 
 

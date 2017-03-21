@@ -23,12 +23,37 @@ void NA_Pig::draw()
 	
 	extern cRenderClass graphics;
 
-	//TODO: load up and configure shader
+	//Shader Stuff
+	cShader *pList = graphics.ShaderInfo.getList();
+	int shdr = 2;
+
+	if (shdr >= graphics.ShaderInfo.shaderCount())
+	{
+		printf("Error: Can't access requested shader\n");
+		shdr = 0;
+	}
+
+	// enable shader program..
+	glUseProgram(pList[shdr].program());
 
 	//glUniform1fv(glGetAttribLocation(shaderID, variableNameAsString), sizeOfArray, valueAsArray)
 	//glUniform1f(glGetAttribLocation(shaderID, variableNameAsString), value);
 
 	//glUseProgram(shaderID);
+
+
+	
+
+	//float intensity = 0.25f;
+
+	//glUniform1i(pList[shdr].get_grabLoc(), (int)m_tex[0]);
+	//glUniform1f(pList[shdr].intensity(), intensity);
+	//
+	//glUseProgram(0);//disable the shader
+
+
+
+
 
 	//TODO: somewhere I have to map a texture
 	//TODO: and load a pig with texture

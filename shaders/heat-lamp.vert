@@ -12,15 +12,15 @@ const float		pi = 3.14;
 void main(void)
 {	
 	float effectiveIntesity;
-	//TODO: if facing away then effective intesity is 0;
-	if(normal blarg blarg...)
+	if(normal is facing light)
 	{
+		float rSqrd = (pigPos.x-lightPos.x)+(pigPos.y-lightPos.y)+(pigPos.z-lightPos.z); //not sqrt-ing as it will be sqrd again anyways
+		effectiveIntesity = lightIntensity/(4*pi*rSqrd); //rSqrd == r*r
 	}
-	
-	
-	float rSqrd = (pigPos.x-lightPos.x)+(pigPos.y-lightPos.y)+(pigPos.z-lightPos.z); //not sqrt-ing as it will be sqrd again anyways
-	effectiveIntesity = lightIntensity/(4*pi*rSqrd); //rSqrd == r*r
-	
+	else
+	{
+		effectiveIntesity = 0;
+	}
 
 	//TODO: change the colour of the pixel
 }

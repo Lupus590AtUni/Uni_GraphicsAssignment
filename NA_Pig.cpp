@@ -75,11 +75,11 @@ void NA_Pig::draw()
 //	const string fragmentShaderExtention = ".frag";
 //
 //	// Create containers for shaders
-//	//TODO: these may need to be in the class
+//	//OLD_TODO: these may need to be in the class
 //	GLuint vertexShaderObject = glCreateShader(GL_VERTEX_SHADER);
 //	GLuint fragmentShaderObject = glCreateShader(GL_FRAGMENT_SHADER);
 //
-//	//TODO: read in shader from file
+//	//OLD_TODO: read in shader from file
 //
 //	// Attach source files
 //	glShaderSourceARB(vertexShaderObject, 1, &VertexShaderSource, &vlength);

@@ -24,17 +24,17 @@ void NA_Pig::draw()
 	extern cRenderClass graphics;
 
 	//Shader Stuff
-	cShader *pList = graphics.ShaderInfo.getList();
-	int shdr = 2;
+	//cShader *pList = graphics.ShaderInfo.getList();
+	//int shdr = 2;
 
-	if (shdr >= graphics.ShaderInfo.shaderCount())
-	{
-		printf("Error: Can't access requested shader\n");
-		shdr = 0;
-	}
+	//if (shdr >= graphics.ShaderInfo.shaderCount())
+	//{
+	//	printf("Error: Can't access requested shader\n");
+	//	shdr = 0;
+	//}
 
-	// enable shader program..
-	glUseProgram(pList[shdr].program());
+	//// enable shader program..
+	//glUseProgram(pList[shdr].program());
 
 	//glUniform1fv(glGetAttribLocation(shaderID, variableNameAsString), sizeOfArray, valueAsArray)
 	//glUniform1f(glGetAttribLocation(shaderID, variableNameAsString), value);

@@ -59,11 +59,19 @@ void NA_Pig::draw()
 	//TODO: and load a pig with texture
 	//TODO: and render that pig - I hate graphics
 
-	glutSolidSphere(12, 120, 2);
+	//glutSolidSphere(12, 120, 2);
+	//glScaled(0.1, 0.1, 0.1); // using this breaks mouse input
+	pigObj.render();
+	//glScaled(1, 1, 1);
 
 	glUseProgram(0); //disable pig heatlamp shader
 	glTranslatef(-pos.x, -pos.y, -pos.z);
 	
+}
+
+void NA_Pig::init()
+{
+	pigObj.objloader("Pig/pig.obj");
 }
 
 //void NA_Pig::loadShader()

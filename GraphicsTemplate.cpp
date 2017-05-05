@@ -53,6 +53,8 @@ int _tmain(int argc, _TCHAR* argv[])
 	graphics.create(argc, argv);
 
 	// good place for one-off initialisations and objects creation..
+	extern NA_Pig pig;
+	pig.init();
 
 	// enter game loop..
 	graphics.loop();	

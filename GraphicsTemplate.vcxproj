@@ -91,6 +91,7 @@
     <ClCompile Include="GraphicsTemplate.cpp" />
     <ClCompile Include="NA_HeatLamp.cpp" />
     <ClCompile Include="NA_Pig.cpp" />
+    <ClCompile Include="objloader.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
@@ -103,6 +104,7 @@
     <ClInclude Include="globals.h" />
     <ClInclude Include="NA_HeatLamp.h" />
     <ClInclude Include="NA_Pig.h" />
+    <ClInclude Include="objloader.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="textfile.h" />
   </ItemGroup>

@@ -29,7 +29,12 @@
 #include <iostream>
 #include <fstream>
 #include <sstream>
+#include <stdio.h>
+#include <iostream>
+#include <io.h>
+#include <stdlib.h>
 #include <vector>
+#include "objloader.h"
 #include "NA_Pig.h"
 
 #include <string>
@@ -46,3 +51,6 @@ using std::vector;
 using glm::vec2;
 using glm::vec3;
 using glm::vec4;
+
+
+

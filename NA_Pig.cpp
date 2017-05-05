@@ -59,7 +59,7 @@ void NA_Pig::draw()
 
 
 	//glutSolidSphere(12, 120, 2);
-	glScaled(0.5, 0.5, 0.5);
+	glScaled(20, 20, 20);
 
 	//TODO: apply texture
 	pigObj.render();
@@ -73,6 +73,9 @@ void NA_Pig::draw()
 void NA_Pig::init()
 {
 	//TODO: load texture
+	
+
+
 	pigObj.objloader("Pig/pig.obj");
 }
 

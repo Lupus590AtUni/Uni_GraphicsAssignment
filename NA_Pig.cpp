@@ -17,7 +17,9 @@ NA_Pig::~NA_Pig()
 
 void NA_Pig::draw()
 {
-	
+	glMatrixMode(GL_MODELVIEW);
+	glPushMatrix();
+	glLoadIdentity();
 	glTranslatef(pos.x, pos.y, pos.z);
 
 	
@@ -60,12 +62,12 @@ void NA_Pig::draw()
 	//TODO: and render that pig - I hate graphics
 
 	//glutSolidSphere(12, 120, 2);
-	//glScaled(0.1, 0.1, 0.1); // using this breaks mouse input
+	glScaled(0.5, 0.5, 0.5);
 	pigObj.render();
-	//glScaled(1, 1, 1);
+	
 
 	glUseProgram(0); //disable pig heatlamp shader
-	glTranslatef(-pos.x, -pos.y, -pos.z);
+	glPopMatrix();
 	
 }
 

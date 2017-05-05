@@ -57,12 +57,11 @@ void NA_Pig::draw()
 
 
 
-	//TODO: somewhere I have to map a texture
-	//TODO: and load a pig with texture
-	//TODO: and render that pig - I hate graphics
 
 	//glutSolidSphere(12, 120, 2);
 	glScaled(0.5, 0.5, 0.5);
+
+	//TODO: apply texture
 	pigObj.render();
 	
 
@@ -73,6 +72,7 @@ void NA_Pig::draw()
 
 void NA_Pig::init()
 {
+	//TODO: load texture
 	pigObj.objloader("Pig/pig.obj");
 }
 

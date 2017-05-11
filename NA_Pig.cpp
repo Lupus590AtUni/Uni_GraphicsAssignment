@@ -1,6 +1,8 @@
 #include "stdafx.h"
 #include "NA_Pig.h"
 #include "cRenderClass.h"
+#define STB_IMAGE_IMPLEMENTATION
+#include "tgaLoader.h"
 
 NA_Pig::NA_Pig()
 {
@@ -73,7 +75,12 @@ void NA_Pig::draw()
 void NA_Pig::init()
 {
 	//TODO: load texture
+
+	int x, y, comp;
 	
+	unsigned char* data =  stbi_load("Pig/pig.tga", &x, &y, &comp, 0);
+	if (data == NULL)
+		std::cout << "NA_Pig::init - stbi_load returned null\n";
 
 
 	pigObj.objloader("Pig/pig.obj");

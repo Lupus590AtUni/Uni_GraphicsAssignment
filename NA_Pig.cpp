@@ -84,6 +84,7 @@ void NA_Pig::init()
 		std::cout << "NA_Pig::init - stbi_load returned null\n";
 
 	//https://open.gl/textures
+	//https://open.gl/content/code/c3_multitexture.txt
 	GLuint tex;
 	glGenTextures(1, &tex);
 	glBindTexture(GL_TEXTURE_2D, tex);
@@ -97,6 +98,7 @@ void NA_Pig::init()
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, 2, 2, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
 
 	pigObj.objloader("Pig/pig.obj");
+	pigObj.id_texture = tex;
 }
 
 //void NA_Pig::loadShader()

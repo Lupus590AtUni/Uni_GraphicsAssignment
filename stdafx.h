@@ -35,8 +35,6 @@
 #include <stdlib.h>
 #include <vector>
 #include "objloader.h"
-#define STB_IMAGE_IMPLEMENTATION
-#include "tgaLoader.h"
 #include "NA_Pig.h"
 
 #include <string>

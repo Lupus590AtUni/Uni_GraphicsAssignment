@@ -107,6 +107,7 @@
     <ClInclude Include="objloader.h" />
     <ClInclude Include="stdafx.h" />
     <ClInclude Include="textfile.h" />
+    <ClInclude Include="tgaLoader.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="ReadMe.txt" />

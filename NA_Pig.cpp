@@ -1,6 +1,7 @@
 #include "stdafx.h"
 #include "NA_Pig.h"
 #include "cRenderClass.h"
+
 #define STB_IMAGE_IMPLEMENTATION
 #include "tgaLoader.h"
 

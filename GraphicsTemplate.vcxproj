@@ -90,6 +90,7 @@
     <ClCompile Include="cShader.cpp" />
     <ClCompile Include="GraphicsTemplate.cpp" />
     <ClCompile Include="NA_HeatLamp.cpp" />
+    <ClCompile Include="NA_ObjLoader.cpp" />
     <ClCompile Include="NA_Pig.cpp" />
     <ClCompile Include="objloader.cpp" />
     <ClCompile Include="stdafx.cpp">
@@ -103,6 +104,7 @@
     <ClInclude Include="cShader.h" />
     <ClInclude Include="globals.h" />
     <ClInclude Include="NA_HeatLamp.h" />
+    <ClInclude Include="NA_ObjLoader.h" />
     <ClInclude Include="NA_Pig.h" />
     <ClInclude Include="objloader.h" />
     <ClInclude Include="stdafx.h" />

@@ -37,20 +37,6 @@ void update()
 	renderScene();
 }
 
-
-// https://stackoverflow.com/questions/143174/how-do-i-get-the-directory-that-a-program-is-running-from
-#include <direct.h>
-#define GetCurrentDir _getcwd
-
-#include <string>
-#include <windows.h>
-
-std::string getexepath()
-{
-	char result[MAX_PATH];
-	return std::string(result, GetModuleFileName(NULL, result, MAX_PATH));
-}
-
 //////////////////////////////////////////////////////////////////////////////////////////
 // _tmain() - program entry point
 //////////////////////////////////////////////////////////////////////////////////////////
@@ -59,10 +45,6 @@ int _tmain(int argc, _TCHAR* argv[])
 	/*vector<glm::vec4>* vertices = new vector<glm::vec4>;
 	vector<glm::vec3>* normals = new vector<glm::vec3>;
 	vector<GLushort>* element = new vector<GLushort>;*/
-
-	char r[MAX_PATH];
-	GetCurrentDirectory(MAX_PATH, r);
-	std::cout << GetCurrentDir(NULL, 0) << "\n" << getexepath() << "\n" << r << "\n";
 
 	extern NA_ObjLoader na_objLoader;
 

@@ -15,6 +15,10 @@ NA_ObjLoader::~NA_ObjLoader()
 {
 }
 
+// https://stackoverflow.com/questions/143174/how-do-i-get-the-directory-that-a-program-is-running-from
+#include <direct.h>
+#define GetCurrentDir _getcwd
+
 bool NA_ObjLoader::load(string fileName, NA_Obj* objOut)
 {
 	// http://www.opengl-tutorial.org/beginners-tutorials/tutorial-7-model-loading/
@@ -28,10 +32,12 @@ bool NA_ObjLoader::load(string fileName, NA_Obj* objOut)
 
 	// open the file
 	std::ifstream objFile;
+
+	
 	objFile.open(fileName);
 	if (!objFile.is_open())
 	{
-		std::cout << "Failed to open file " << fileName << "\n";
+		std::cout << "Failed to open file " << GetCurrentDir(NULL, 0) << "/" << fileName << "\n";
 		return false;
 	}
 

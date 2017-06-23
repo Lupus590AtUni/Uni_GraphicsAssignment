@@ -15,17 +15,18 @@ struct NA_Tri
 
 class NA_Obj
 {
+public:
 	NA_Obj();
 	~NA_Obj();
 	NA_Tri getFace(int faceID);
 	
 	//TODO: change this
 	int vertexCount;
-	vec3* vertex;
+	vec3* vertex = NULL;
 	int normalCount;
-	vec3* normal;
+	vec3* normal = NULL;
 	int faceCount;
-	int* face; //how will this work? use array of ints to form triangles, use it to index vertex?
+	int* face = NULL; //how will this work? use array of ints to form triangles, use it to index vertex?
 };
 
 class NA_ObjLoader
@@ -33,7 +34,7 @@ class NA_ObjLoader
 public:
 	NA_ObjLoader();
 	~NA_ObjLoader();
-	NA_Obj load(string fileName);
+	bool load(string fileName, NA_Obj* objOut);
 	
 };
 

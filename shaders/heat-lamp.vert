@@ -10,6 +10,8 @@ const float		pi = 3.14;
 
 void main(void)
 {	
+
+//TODO: move to frag, no need for vert
 	return;
 	vec3 lightpos = gl_ LightSource[0].position;
 

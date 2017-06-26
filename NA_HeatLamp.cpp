@@ -16,9 +16,10 @@ NA_HeatLamp::~NA_HeatLamp()
 
 void NA_HeatLamp::draw()
 {
-	
+	glPushMatrix();
+	glLoadIdentity();
 	glTranslatef(pos.x, pos.y, pos.z);
 	glutSolidSphere(radius, 120, 2);
-	glTranslatef(-pos.x, -pos.y, -pos.z);
+	glPopMatrix();
 	
 }

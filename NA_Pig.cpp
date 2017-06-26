@@ -62,9 +62,20 @@ void NA_Pig::draw()
 
 
 	//glutSolidSphere(12, 120, 2);
-	glScaled(20, 20, 20);
+	int size = 50;
+	glScaled(size, size, size);
 
 	//TODO: apply texture
+
+	//TODO: MATERIAL PROPERTISE, THIS IS WHY IT'S SO DARK!!!!
+	GLfloat ambient[4] = { 0.0,0.0,0.0,0.0 };
+	GLfloat diffuse[4] = { 0.0,1.0,0.0,1.0 };
+	GLfloat specular[4] = { 1.0,1.0,0.0,0.0 };
+
+	glMaterialfv(GL_FRONT, GL_AMBIENT, ambient);
+	glMaterialfv(GL_FRONT, GL_DIFFUSE, diffuse);
+	glMaterialfv(GL_FRONT, GL_SPECULAR, specular);
+
 	pigObj.render();
 	
 

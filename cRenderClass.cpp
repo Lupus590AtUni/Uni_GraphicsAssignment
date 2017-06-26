@@ -198,7 +198,7 @@ void cRenderClass::render( )
 	extern NA_HeatLamp heatLamp;
 	extern NA_Pig pig;
 
-	heatLamp.draw();
+	//heatLamp.draw();
 	pig.draw();
 
 	
@@ -298,7 +298,7 @@ void mouse(int x, int y)
 
 	
 
-	if (gluUnProject(graphics.mouseRaw.x, graphics.mouseRaw.y, 0, modelMatix, projMatix, viewport, &fixedX, &fixedY, &fixedZ) == GL_FALSE)
+	if (gluUnProject(graphics.mouseRaw.x, graphics.mouseRaw.y, 200, modelMatix, projMatix, viewport, &fixedX, &fixedY, &fixedZ) == GL_FALSE)
 	{
 		cout << "cRenderClass - mouse func - gluUnProject returned false\n";
 		return;

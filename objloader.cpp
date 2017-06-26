@@ -7,10 +7,9 @@
 #include <iostream>
 #include <io.h>
 #include <stdlib.h>
-#include "gl/glut.h"
+#include "glut.h"
 
 #include "objloader.h"
-#include "stdafx.h"
 using namespace std;
 void object_type::render()
 {

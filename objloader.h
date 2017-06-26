@@ -1,8 +1,5 @@
-#pragma once
-#include "stdafx.h"
-// i don't know where on the internet i got this from
-//LOW: find source of this so can reference
-
+#ifndef OBJLOAD
+#define OBJLOAD
 /*****************************************************************************************
 *Loads obj file - limited to vertices, faces, normals, texture maps
 *loads to object structure as defined in .h file
@@ -59,5 +56,6 @@ private:
 
 
 
+#endif
 
 /*************************************************************/

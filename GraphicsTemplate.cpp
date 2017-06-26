@@ -37,6 +37,8 @@ void update()
 	renderScene();
 }
 
+#include <iostream>
+
 //////////////////////////////////////////////////////////////////////////////////////////
 // _tmain() - program entry point
 //////////////////////////////////////////////////////////////////////////////////////////
@@ -46,10 +48,19 @@ int _tmain(int argc, _TCHAR* argv[])
 	vector<glm::vec3>* normals = new vector<glm::vec3>;
 	vector<GLushort>* element = new vector<GLushort>;*/
 
+
+	std::ofstream test;
+	test.open("test.txt");
+	test << "testing\n";
+	test.close();
+
+
+
+
 	extern NA_ObjLoader na_objLoader;
 
 	NA_Obj temp;
-	if (!na_objLoader.load("Pig/Cube.obj", &temp))
+	if (!na_objLoader.load("Pig\\Cube.obj", &temp)) //BUG: this should work but doesn't
 		return 1;
 
 	return 0;

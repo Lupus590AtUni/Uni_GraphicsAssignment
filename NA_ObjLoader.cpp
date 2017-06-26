@@ -3,6 +3,8 @@
 #include <fstream>
 #include <iostream>
 #include <string> // std::getLine
+#include <vector>
+using std::vector;
 
 NA_ObjLoader na_objLoader; // access with extern NA_ObjLoader na_objLoader
 
@@ -37,16 +39,18 @@ bool NA_ObjLoader::load(string fileName, NA_Obj* objOut)
 	objFile.open(fileName);
 	if (!objFile.is_open())
 	{
-		std::cout << "Failed to open file " << GetCurrentDir(NULL, 0) << "/" << fileName << "\n";
+		std::cout << "Failed to open file " << GetCurrentDir(NULL, 0) << "/" << fileName << "\n"; //BUG: no matter what I point this too it fails to open
 		return false;
 	}
 
 	// load file via iostream into std::vector
+	std::vector<string> temp;
 	while (!objFile.eof())
 	{
 		string line;
 		objFile >> line;
 		std::cout << line;
+		temp.push_back(line); //TODO: check that this copies line and doesn't just reference it
 	}
 	objFile.close();
 	

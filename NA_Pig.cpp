@@ -29,17 +29,17 @@ void NA_Pig::draw()
 	extern cRenderClass graphics;
 
 	//Shader Stuff
-	//cShader *pList = graphics.ShaderInfo.getList();
-	//int shdr = 2;
+	cShader *pList = graphics.ShaderInfo.getList();
+	int shdr = 2;
 
-	//if (shdr >= graphics.ShaderInfo.shaderCount())
-	//{
-	//	printf("Error: Can't access requested shader\n");
-	//	shdr = 0;
-	//}
+	if (shdr >= graphics.ShaderInfo.shaderCount())
+	{
+		printf("Error: Can't access requested shader\n");
+		shdr = 0;
+	}
 
-	//// enable shader program..
-	//glUseProgram(pList[shdr].program());
+	// enable shader program..
+	glUseProgram(pList[shdr].program());
 
 	//glUniform1fv(glGetAttribLocation(shaderID, variableNameAsString), sizeOfArray, valueAsArray)
 	//glUniform1f(glGetAttribLocation(shaderID, variableNameAsString), value);
@@ -49,12 +49,12 @@ void NA_Pig::draw()
 
 	
 
-	//float intensity = 0.25f;
+	float intensity = 0.25f;
 
 	//glUniform1i(pList[shdr].get_grabLoc(), (int)m_tex[0]);
-	//glUniform1f(pList[shdr].intensity(), intensity);
-	//
-	//glUseProgram(0);//disable the shader
+	glUniform1f(pList[shdr].intensity(), intensity);
+	
+	
 
 
 
@@ -68,9 +68,9 @@ void NA_Pig::draw()
 	//TODO: apply texture
 
 	//TODO: MATERIAL PROPERTISE, THIS IS WHY IT'S SO DARK!!!!
-	GLfloat ambient[4] = { 0.0,0.0,0.0,0.0 };
-	GLfloat diffuse[4] = { 0.0,1.0,0.0,1.0 };
-	GLfloat specular[4] = { 1.0,1.0,0.0,0.0 };
+	GLfloat ambient[4] = { 1.0,1.0,1.0,1.0 };
+	GLfloat diffuse[4] = { 1.0,1.0,1.0,1.0 };
+	GLfloat specular[4] = { 1.0,1.0,1.0,1.0 };
 
 	glMaterialfv(GL_FRONT, GL_AMBIENT, ambient);
 	glMaterialfv(GL_FRONT, GL_DIFFUSE, diffuse);

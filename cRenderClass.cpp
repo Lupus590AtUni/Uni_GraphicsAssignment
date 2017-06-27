@@ -198,7 +198,7 @@ void cRenderClass::render( )
 	extern NA_HeatLamp heatLamp;
 	extern NA_Pig pig;
 
-	//heatLamp.draw();
+	heatLamp.draw();
 	pig.draw();
 
 	
@@ -298,7 +298,7 @@ void mouse(int x, int y)
 
 	
 
-	if (gluUnProject(graphics.mouseRaw.x, graphics.mouseRaw.y, 200, modelMatix, projMatix, viewport, &fixedX, &fixedY, &fixedZ) == GL_FALSE)
+	if (gluUnProject(graphics.mouseRaw.x, graphics.mouseRaw.y, 0, modelMatix, projMatix, viewport, &fixedX, &fixedY, &fixedZ) == GL_FALSE)
 	{
 		cout << "cRenderClass - mouse func - gluUnProject returned false\n";
 		return;
@@ -316,15 +316,15 @@ void mouse(int x, int y)
 	GLfloat light0_position[] = { graphics.mousePos.x , graphics.mousePos.y, 1.0, 0.0 };
 	GLfloat light1_position[] = { 10.0 , 0.0, 0.0, 0.0 };
 
-	glClearColor(0.0, 0.0, 0.0, 0.0);
-	glShadeModel(GL_SMOOTH);
+	glClearColor(0.0, 0.0, 0.0, 1.0);
+	//glShadeModel(GL_SMOOTH);
 	glMaterialfv(GL_FRONT, GL_SPECULAR, mat_specular);
 	glMaterialfv(GL_FRONT, GL_SHININESS, mat_shininess);
 	glLightfv(GL_LIGHT0, GL_POSITION, light0_position);
-	glLightfv(GL_LIGHT1, GL_POSITION, light1_position);
+	//glLightfv(GL_LIGHT1, GL_POSITION, light1_position);
 	glEnable(GL_LIGHTING);
 	glEnable(GL_LIGHT0);
-	glEnable(GL_LIGHT1);
+	//glEnable(GL_LIGHT1);
 	
 
 }

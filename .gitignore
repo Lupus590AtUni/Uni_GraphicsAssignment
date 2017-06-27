@@ -31,6 +31,7 @@ $RECYCLE.BIN/
 *.lo
 *.o
 *.obj
+!pig/*.obj
 
 # Precompiled Headers
 *.gch
@@ -40,6 +41,9 @@ $RECYCLE.BIN/
 *.so
 *.dylib
 *.dll
+!debug/glew32.dll
+!debug/glext.dll
+!debug/glut32.dll
 
 # Fortran module files
 *.mod
@@ -50,6 +54,9 @@ $RECYCLE.BIN/
 *.la
 *.a
 *.lib
+!glew32.lib
+!glew32s.lib
+!glut32.lib
 
 # Executables
 *.exe

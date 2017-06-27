@@ -41,9 +41,9 @@ $RECYCLE.BIN/
 *.so
 *.dylib
 *.dll
-!debug/glew32.dll
-!debug/glext.dll
-!debug/glut32.dll
+![Dd]ebug/glew32.dll
+![Dd]ebug/glext.dll
+![Dd]ebug/glut32.dll
 
 # Fortran module files
 *.mod

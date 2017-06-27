@@ -1,5 +1,7 @@
 #include "stdafx.h"
 
+//note: this breaks if the shader file is empty (it thinks that it failed to load the file)
+
 #define SHADER_COUNT	2
 
 char *vShader[] = {	"shaders\\intensity.vert",	// FLAG_MAPS_INTENSITYS

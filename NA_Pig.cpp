@@ -30,7 +30,7 @@ void NA_Pig::draw()
 
 	//Shader Stuff
 	cShader *pList = graphics.ShaderInfo.getList();
-	int shdr = 2;
+	int shdr = 0;
 
 	if (shdr >= graphics.ShaderInfo.shaderCount())
 	{

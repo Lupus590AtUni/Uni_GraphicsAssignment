@@ -3,11 +3,12 @@
 *loads to object structure as defined in .h file
 ******************************************************************************************/
 
+#include "stdafx.h"
 #include <stdio.h>
 #include <iostream>
 #include <io.h>
 #include <stdlib.h>
-#include "glut.h"
+#include "GL/glut.h"
 
 #include "objloader.h"
 using namespace std;

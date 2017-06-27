@@ -108,17 +108,19 @@ void cRenderClass::create(int argc, _TCHAR* argv[])
 
 	// set display callback for current window
 	glutDisplayFunc(renderScene);	
-  
+	// set up the global idle callback
+	glutIdleFunc(update);
+
+	initShaders();	  
+
     // This block copied from HPC boids cpu
     glutMouseFunc(click);
 	glutKeyboardFunc(key);
 	glutMotionFunc(mouse);
 	glutPassiveMotionFunc(mouse);
 
-	// set up the global idle callback
-	glutIdleFunc(update);
+	//note: do texture loading here
 
-	initShaders();	
 }
 
 //////////////////////////////////////////////////////////////////////////////////////////
@@ -185,7 +187,6 @@ void cRenderClass::render( )
 	// BEFORE SHADER
 
 	// disable shader program
-	glUseProgram(0);
 
 	// clear the back buffer
 	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
@@ -198,10 +199,15 @@ void cRenderClass::render( )
 	extern NA_HeatLamp heatLamp;
 	extern NA_Pig pig;
 
+
+	cShader *pList = ShaderInfo.getList();
+	glUseProgram(pList[1].program());
+
 	heatLamp.draw();
 	pig.draw();
 
-	
+
+	glUseProgram(0);
 
 	// finally swap the buffers of the current window
 	glutSwapBuffers();
@@ -318,12 +324,12 @@ void mouse(int x, int y)
 
 	glClearColor(0.0, 0.0, 0.0, 1.0);
 	//glShadeModel(GL_SMOOTH);
-	glMaterialfv(GL_FRONT, GL_SPECULAR, mat_specular);
-	glMaterialfv(GL_FRONT, GL_SHININESS, mat_shininess);
-	glLightfv(GL_LIGHT0, GL_POSITION, light0_position);
+	//glMaterialfv(GL_FRONT, GL_SPECULAR, mat_specular);
+	//glMaterialfv(GL_FRONT, GL_SHININESS, mat_shininess);
+	//glLightfv(GL_LIGHT0, GL_POSITION, light0_position);
 	//glLightfv(GL_LIGHT1, GL_POSITION, light1_position);
-	glEnable(GL_LIGHTING);
-	glEnable(GL_LIGHT0);
+	//glEnable(GL_LIGHTING);
+	//glEnable(GL_LIGHT0);
 	//glEnable(GL_LIGHT1);
 	
 

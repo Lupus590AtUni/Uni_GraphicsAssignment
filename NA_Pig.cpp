@@ -72,9 +72,13 @@ void NA_Pig::draw()
 	GLfloat diffuse[4] = { 1.0,1.0,1.0,1.0 };
 	GLfloat specular[4] = { 1.0,1.0,1.0,1.0 };
 
-	//glMaterialfv(GL_FRONT, GL_AMBIENT, ambient);
-	//glMaterialfv(GL_FRONT, GL_DIFFUSE, diffuse);
-	//glMaterialfv(GL_FRONT, GL_SPECULAR, specular);
+	glMaterialfv(GL_FRONT, GL_AMBIENT, ambient);
+	glMaterialfv(GL_FRONT, GL_DIFFUSE, diffuse);
+	glMaterialfv(GL_FRONT, GL_SPECULAR, specular);
+
+	cShader *pList = graphics.ShaderInfo.getList();
+	//glUseProgram(pList[1].program()); //shader on: no pig
+										//shader off: ambient light only (tiny amount of diffuse or an illusion?)
 
 	pigObj.render();
 	

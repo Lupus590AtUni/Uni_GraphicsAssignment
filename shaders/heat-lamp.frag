@@ -8,12 +8,19 @@
 
 //const float		pi = 3.14;
 
+
+uniform float		Intensity;
+uniform sampler2D	grabTexture;
+
+varying vec2 		texCoord;
+
 void main(void)
 {	
-	gl_FragColor = vec4( 1.0, 0.0, 0.0, 1.0 );
+	
 
 
-	//vec3 lightpos = gl_ LightSource[0].position;
+	vec3 lightpos = vec3(gl_LightSource[0].position.x, gl_LightSource[0].position.y, gl_LightSource[0].position.z);
+	gl_FragColor = vec4( lightpos.x, lightpos.y, lightpos.z, 1.0 );
 
 	//float effectiveIntesity;
 	//if(dot(normal, lightPos) > 0.0)//facing the light

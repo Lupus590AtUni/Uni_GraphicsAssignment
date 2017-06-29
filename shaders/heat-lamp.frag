@@ -6,7 +6,7 @@
 
 //varying vec2 	texCoord;
 
-//const float		pi = 3.14;
+const float		PI = 3.14;
 
 
 uniform float		Intensity;
@@ -16,24 +16,34 @@ varying vec2 		texCoord;
 
 void main(void)
 {	
+	//vec3 pigPos = vec3 (0.0);
+
+
+
+	vec3 lightPos = vec3(gl_LightSource[0].position.x, gl_LightSource[0].position.y, gl_LightSource[0].position.z);
 	
 
+	float effectiveIntesity;
 
-	vec3 lightpos = vec3(gl_LightSource[0].position.x, gl_LightSource[0].position.y, gl_LightSource[0].position.z);
-	gl_FragColor = vec4( lightpos.x, lightpos.y, lightpos.z, 1.0 );
+	//TODO: find the normal
 
-	//float effectiveIntesity;
-	//if(dot(normal, lightPos) > 0.0)//facing the light
-	//{
-	//	float rSqrd = (pigPos.x-Pos.x)+(pigPos.y-lightPos.y)+(pigPos.z-lightPos.z); //not sqrt-ing as it will be sqrd again anyways
-	//	effectiveIntesity = lightIntensity/(4.0*pi*rSqrd); //rSqrd == r*r
-	//}
+	//if(dot(gl_Normal, vec4(lightPos, 1.0)) > 0.0)//facing the light
+	{
+
+		//float rSqrd = (pigPos.x-lightPos.x)+(pigPos.y-lightPos.y)+(pigPos.z-lightPos.z); //not sqrt-ing as it will be sqrd again anyways
+		//effectiveIntesity = lightIntensity/(4.0*PI*rSqrd); //rSqrd == r*r
+	}
 	//else
-	//{
-	//	effectiveIntesity = 0.0;
-	//}
+	{
+		effectiveIntesity = 0.0;
+	}
 
 	//TODO: change the colour of the pixel
-	//.frag is pixels, but the colour needs the vertex, HOW DO I SEND STUFF TO THE OTHER SHADER!!!!
+	//gl_FragColor = vec4( lightPos.x, lightPos.y, lightPos.z, 1.0 );
+
+
+	//simple check to make sure that shader compiles
+	vec3 lP = vec3(gl_LightSource[0].position.x, gl_LightSource[0].position.y, gl_LightSource[0].position.z);
+	gl_FragColor = vec4( lP.x, lP.y, lP.z, 1.0 );
 }
 

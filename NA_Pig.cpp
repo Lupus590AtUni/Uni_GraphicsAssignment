@@ -77,7 +77,7 @@ void NA_Pig::draw()
 	glMaterialfv(GL_FRONT, GL_SPECULAR, specular);
 
 	cShader *pList = graphics.ShaderInfo.getList();
-	//glUseProgram(pList[1].program()); //shader on: no pig
+	glUseProgram(pList[1].program()); //shader on: no pig // fixed, was vertex shader being empty, replaced it with intensity.vert
 										//shader off: ambient light only (tiny amount of diffuse or an illusion?)
 
 	pigObj.render();

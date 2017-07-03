@@ -23,11 +23,15 @@ void NA_HeatLamp::draw()
 
 	extern cRenderClass graphics;
 
+	glPopMatrix();
+
 	//http://www.glprogramming.com/red/chapter05.html
 	GLfloat mat_specular[] = { 1.0, 1.0, 1.0, 1.0 };
 	GLfloat mat_shininess[] = { 50.0 };
-	GLfloat light0_position[] = { graphics.mousePos.x , graphics.mousePos.y, 1.0, 0.0 };
+	GLfloat light0_position[] = { pos.x , pos.y, pos.z, 0.0 };
 	GLfloat light1_position[] = { 10.0 , 0.0, 0.0, 0.0 };
+
+
 
 	glClearColor(0.0, 0.0, 0.0, 1.0);
 	glShadeModel(GL_SMOOTH);
@@ -40,6 +44,6 @@ void NA_HeatLamp::draw()
 	//glEnable(GL_LIGHT1);
 
 
-	glPopMatrix();
+	
 	
 }

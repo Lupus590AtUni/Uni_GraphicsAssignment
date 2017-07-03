@@ -24,7 +24,7 @@ void NA_Pig::draw()
 	glPushMatrix();
 	glLoadIdentity();
 	glTranslatef(pos.x, pos.y, pos.z);
-
+	glShadeModel(GL_SMOOTH);
 	
 	extern cRenderClass graphics;
 
@@ -79,6 +79,8 @@ void NA_Pig::draw()
 	cShader *pList = graphics.ShaderInfo.getList();
 	glUseProgram(pList[1].program()); //shader on: no pig // fixed, was vertex shader being empty, replaced it with intensity.vert
 										//shader off: ambient light only (tiny amount of diffuse or an illusion?)
+
+
 
 	pigObj.render();
 	

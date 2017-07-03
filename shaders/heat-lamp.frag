@@ -27,7 +27,7 @@ void main(void)
 
 	//TODO: find the normal
 
-	//if(dot(gl_Normal, vec4(lightPos, 1.0)) > 0.0)//facing the light
+	//if(dot(gl_Normal, vec4(lightPos, 1.0)) > 0.0)//facing the light //uncommenting this breaks the shader
 	{
 
 		//float rSqrd = (pigPos.x-lightPos.x)+(pigPos.y-lightPos.y)+(pigPos.z-lightPos.z); //not sqrt-ing as it will be sqrd again anyways
@@ -46,4 +46,3 @@ void main(void)
 	vec3 lP = vec3(gl_LightSource[0].position.x, gl_LightSource[0].position.y, gl_LightSource[0].position.z);
 	gl_FragColor = vec4( lP.x, lP.y, lP.z, 1.0 );
 }
-

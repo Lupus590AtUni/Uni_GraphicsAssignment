@@ -12,6 +12,7 @@ const float		PI = 3.14;
 uniform float		Intensity;
 uniform sampler2D	grabTexture;
 
+varying vec3		Normal;
 varying vec2 		texCoord;
 
 void main(void)
@@ -20,20 +21,29 @@ void main(void)
 
 
 
-	vec3 lightPos = vec3(gl_LightSource[0].position.x, gl_LightSource[0].position.y, gl_LightSource[0].position.z);
+	vec3 lightPos = vec3(gl_LightSource[0].position.xyz);
+
+	normalize(lightPos);
+
+	
 	
 
 	float effectiveIntesity;
 
 	//TODO: find the normal
 
-	//if(dot(gl_Normal, vec4(lightPos, 1.0)) > 0.0)//facing the light //uncommenting this breaks the shader
+	vec3 normal = vec3(Normal.xyz);
+
+	float d = dot(normal.xyz, lightPos.xyz);
+	if(d > 0.0)//facing the light
 	{
 
 		//float rSqrd = (pigPos.x-lightPos.x)+(pigPos.y-lightPos.y)+(pigPos.z-lightPos.z); //not sqrt-ing as it will be sqrd again anyways
 		//effectiveIntesity = lightIntensity/(4.0*PI*rSqrd); //rSqrd == r*r
+
+		//effectiveIntesity = 0.0;
 	}
-	//else
+	else
 	{
 		effectiveIntesity = 0.0;
 	}

@@ -5,9 +5,12 @@
 
 const float		PI = 3.14;
 const float		lightIntensity = 1.0;
-const float		constFudge = 1;
-const float		linearFudge = 0.5;
-const float		quadraticFudge = 0.25;
+const float		constFudge = 0.25;
+const float		linearFudge = 0.005;
+const float		quadraticFudge = 0.025;
+
+float rend	= 250.0;
+float rstart = 50.0;
 
 
 uniform float		Intensity;
@@ -35,15 +38,27 @@ void main(void)
 
 	vec3 normNormal = normalize(vec3(Normal.xyz));
 
-	float distToLight = vec3(pigPos - lightPos).length();
+	float distToLight = vec3(lightPos - pigPos).length();
 
 	float d = dot(normNormal.xyz, normLightPos.xyz);
 	if(d > 0.0)//facing the light
 	{
+		float falloff;
 
-		effectiveIntesity = d*lightIntensity/(constFudge+ linearFudge*distToLight +quadraticFudge*distToLight*distToLight); //rSqrd == r*r
+		if( distToLight < rstart )
+			falloff = 1.0;
+		else
+		if( distToLight > rend )
+			falloff = 0.0;
+			else
+			{
+			falloff = rend-distToLight / rend-rstart;
+			}
 
-		//dot * (1.0/(a + a1*dl + a2*(dl^2)));
+
+
+
+		effectiveIntesity = d*lightIntensity * falloff;// (1.0/(constFudge+(quadraticFudge*distToLight*distToLight))); //+ (linearFudge*distToLight) );// +(quadraticFudge*distToLight*distToLight));
 
 	}
 	else

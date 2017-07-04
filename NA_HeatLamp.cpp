@@ -19,7 +19,7 @@ void NA_HeatLamp::draw()
 	glPushMatrix();
 	glLoadIdentity();
 	glTranslatef(pos.x, pos.y, pos.z);
-	glutSolidSphere(radius, 120, 2);
+	glutSolidSphere(radius, 15, 2);
 
 	extern cRenderClass graphics;
 

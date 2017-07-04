@@ -81,7 +81,7 @@ void NA_Pig::draw()
 										//shader off: ambient light only (tiny amount of diffuse or an illusion?)
 
 
-
+	//glutSolidSphere(2, 15, 2);
 	pigObj.render();
 	
 

@@ -5,6 +5,9 @@
 
 const float		PI = 3.14;
 const float		lightIntensity = 1.0;
+const float		constFudge = 1;
+const float		linearFudge = 0;
+const float		quadraticFudge = 0;
 
 
 uniform float		Intensity;
@@ -17,30 +20,28 @@ varying vec2 		texCoord;
 void main(void)
 {	
 	vec3 pigPos = Vertex;
-
+	vec3 normPigPos = normalize(pigPos);
 
 
 	vec3 lightPos = vec3(gl_LightSource[0].position.xyz);
 
-	normalize(lightPos);
+	vec3 normLightPos = normalize(lightPos);
 
 	
 	
 
 	float effectiveIntesity;
 
-	//TODO: find the normal
 
-	vec3 normal = vec3(Normal.xyz);
+	vec3 normNormal = normalize(vec3(Normal.xyz));
 
-	float d = dot(normal.xyz, lightPos.xyz);
+	float d = dot(normNormal.xyz, normLightPos.xyz);
 	if(d > 0.0)//facing the light
 	{
 
 		float rSqrd = (pigPos.x-lightPos.x)+(pigPos.y-lightPos.y)+(pigPos.z-lightPos.z); //not sqrt-ing as it will be sqrd again anyways
-		effectiveIntesity = lightIntensity/(4.0*PI*rSqrd); //rSqrd == r*r
+		effectiveIntesity = lightIntensity/(constFudge+ linearFudge*4.0*PI*sqrt(rSqrd) +quadraticFudge*4.0*PI*rSqrd); //rSqrd == r*r
 
-		//effectiveIntesity = 0.0;
 	}
 	else
 	{
@@ -48,7 +49,7 @@ void main(void)
 	}
 
 	//TODO: change the colour of the pixel
-	gl_FragColor = vec4(vec4( abs(lightPos.x), abs(lightPos.y), abs(lightPos.z), 1.0 ) * effectiveIntesity); //TODO: improve
+	gl_FragColor = vec4(vec4( 1.0 ) * effectiveIntesity); //TODO: improve
 
 
 	//simple check to make sure that shader compiles

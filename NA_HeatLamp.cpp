@@ -31,8 +31,8 @@ void NA_HeatLamp::draw()
 	GLfloat light0_position[] = { pos.x , pos.y, pos.z, 0.0 };
 	GLfloat light1_position[] = { 10.0 , 0.0, 0.0, 0.0 };
 
-#include <iostream>
-	std::cout << "Light Pos: " << pos.x << ", "<<pos.y<<", "<<pos.z<<"\n";
+//#include <iostream>
+	//std::cout << "Light Pos: " << pos.x << ", "<<pos.y<<", "<<pos.z<<"\n";
 
 
 	glClearColor(0.0, 0.0, 0.0, 1.0);

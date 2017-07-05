@@ -65,9 +65,10 @@ void NA_Pig::draw()
 	int size = 50;
 	glScaled(size, size, size);
 
-	//TODO: apply texture
+	// activate texture for application is shader
+	glActiveTexture(pigObj.id_texture);
 
-	//TODO: MATERIAL PROPERTISE, THIS IS WHY IT'S SO DARK!!!!
+	// MATERIAL PROPERTISE
 	GLfloat ambient[4] = { 1.0,1.0,1.0,1.0 };
 	GLfloat diffuse[4] = { 1.0,1.0,1.0,1.0 };
 	GLfloat specular[4] = { 1.0,1.0,1.0,1.0 };
@@ -96,7 +97,7 @@ void NA_Pig::init()
 
 	int x, y, comp;
 	
-	unsigned char* data =  stbi_load("Pig/pig.tga", &x, &y, &comp, 0);
+	unsigned char* data =  stbi_load("Pig/pig.tga", &x, &y, &comp, 4);
 	if (data == NULL)
 		std::cout << "NA_Pig::init - stbi_load returned null\n";
 
@@ -113,6 +114,9 @@ void NA_Pig::init()
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	//glGenerateMipmap(GL_TEXTURE_2D);
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, 2, 2, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
+
+	//texture is copied to openGL now, can delete here
+	stbi_image_free(data);
 
 	pigObj.objloader("Pig/pig.obj");
 	pigObj.id_texture = tex;

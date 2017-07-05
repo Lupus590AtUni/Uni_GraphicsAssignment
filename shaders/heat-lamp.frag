@@ -70,6 +70,10 @@ void main(void)
 	gl_FragColor = vec4(vec4( 1.0 ) * effectiveIntesity); //TODO: improve
 
 
+	//texturing stuff
+	//http://www.opengl-tutorial.org/beginners-tutorials/tutorial-5-a-textured-cube/
+	gl_FragColor = texture(grabTexture, texCood).rgb;
+
 	//simple check to make sure that shader compiles
 	vec3 lP = vec3(abs(gl_LightSource[0].position.x/100), abs(gl_LightSource[0].position.y/100), abs(gl_LightSource[0].position.z/100));
 	//gl_FragColor = vec4( lP.x, lP.y, lP.z, 1.0 );

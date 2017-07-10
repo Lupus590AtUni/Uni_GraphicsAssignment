@@ -49,15 +49,12 @@ void NA_Pig::draw()
 
 	
 
-	float intensity = 0.25f;
-
-	//glUniform1i(pList[shdr].get_grabLoc(), (int)m_tex[0]);
-	//glUniform1f(pList[shdr].intensity(), intensity);
+	
 	
 	
 
 
-
+	
 
 
 
@@ -67,6 +64,8 @@ void NA_Pig::draw()
 
 	// activate texture for application is shader
 	glActiveTexture(pigObj.id_texture);
+
+	
 
 	// MATERIAL PROPERTISE
 	GLfloat ambient[4] = { 1.0,1.0,1.0,1.0 };
@@ -80,7 +79,11 @@ void NA_Pig::draw()
 	cShader *pList = graphics.ShaderInfo.getList();
 	glUseProgram(pList[1].program()); //shader on: no pig // fixed, was vertex shader being empty, replaced it with intensity.vert
 										//shader off: ambient light only (tiny amount of diffuse or an illusion?)
+	extern NA_MathsLib na_maths;
+	float intensity = (float) na_maths.dice(100);
 
+	glUniform1i(pList[1].get_grabLoc(), pigObj.id_texture);
+	glUniform1f(pList[1].intensity(), intensity);
 
 	//glutSolidSphere(2, 15, 2);
 	pigObj.render();
@@ -120,6 +123,9 @@ void NA_Pig::init()
 
 	pigObj.objloader("Pig/pig.obj");
 	pigObj.id_texture = tex;
+
+	extern NA_MathsLib na_maths;
+	na_maths.seedDice();
 }
 
 //void NA_Pig::loadShader()

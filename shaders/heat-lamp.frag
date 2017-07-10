@@ -38,7 +38,10 @@ void main(void)
 
 	vec3 normNormal = normalize(vec3(Normal.xyz));
 
-	float distToLight = vec3(lightPos - pigPos).length();
+	vec3 t = vec3(lightPos - pigPos);
+
+	//float distToLight = t.length(); //this line errors on kim's laptop, possible reasson to why light distance thing don't work
+	float distToLight = Intensity; //confirmed, this is issue for light distance not affecting brightness on object
 
 	float d = dot(normNormal.xyz, normLightPos.xyz);
 	if(d > 0.0)//facing the light
@@ -72,7 +75,7 @@ void main(void)
 
 	//texturing stuff
 	//http://www.opengl-tutorial.org/beginners-tutorials/tutorial-5-a-textured-cube/
-	gl_FragColor = texture(grabTexture, texCood).rgb;
+	//gl_FragColor = texture(grabTexture, texCood).rgb;
 
 	//simple check to make sure that shader compiles
 	vec3 lP = vec3(abs(gl_LightSource[0].position.x/100), abs(gl_LightSource[0].position.y/100), abs(gl_LightSource[0].position.z/100));

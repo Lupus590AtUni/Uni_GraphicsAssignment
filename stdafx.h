@@ -21,7 +21,7 @@
 #include "cRenderClass.h"
 
 #include "NA_HeatLamp.h"
-
+#include "NA_MathsLib.h"
 
 #include <stdio.h>
 #include <stdlib.h>

@@ -5,6 +5,7 @@ class NA_Pig
 {
 private:
 	object_type pigObj;
+	unsigned char* rawLoadedTexture = NULL;
 public:
 	NA_Pig();
 	~NA_Pig();

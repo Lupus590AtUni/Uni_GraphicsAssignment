@@ -16,6 +16,7 @@ NA_Pig pig;
 
 NA_Pig::~NA_Pig()
 {
+	STBI_FREE(rawLoadedTexture);
 }
 
 void NA_Pig::draw()
@@ -62,8 +63,7 @@ void NA_Pig::draw()
 	int size = 50;
 	glScaled(size, size, size);
 
-	// activate texture for application is shader
-	glActiveTexture(pigObj.id_texture);
+	
 
 	
 
@@ -72,12 +72,25 @@ void NA_Pig::draw()
 	GLfloat diffuse[4] = { 1.0,1.0,1.0,1.0 };
 	GLfloat specular[4] = { 1.0,1.0,1.0,1.0 };
 
-	glMaterialfv(GL_FRONT, GL_AMBIENT, ambient);
-	glMaterialfv(GL_FRONT, GL_DIFFUSE, diffuse);
-	glMaterialfv(GL_FRONT, GL_SPECULAR, specular);
+	//glMaterialfv(GL_FRONT, GL_AMBIENT, ambient);
+	//glMaterialfv(GL_FRONT, GL_DIFFUSE, diffuse);
+	//glMaterialfv(GL_FRONT, GL_SPECULAR, specular);
+
+	// activate texture for application is shader
+	//https://www.opengl.org/archives/resources/code/samples/glut_examples/examples/examples.html
+	glEnable(GL_TEXTURE_2D);
+	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+	glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_DECAL);
+
+	glTexImage2D(GL_TEXTURE_2D, 0, 3, 128, 128, 0, GL_RGBA,
+		GL_UNSIGNED_BYTE, rawLoadedTexture);
+
+	glActiveTexture(pigObj.id_texture);
 
 	cShader *pList = graphics.ShaderInfo.getList();
-	glUseProgram(pList[1].program()); //shader on: no pig // fixed, was vertex shader being empty, replaced it with intensity.vert
+	glUseProgram(0);// pList[1].program()); //shader on: no pig // fixed, was vertex shader being empty, replaced it with intensity.vert
 										//shader off: ambient light only (tiny amount of diffuse or an illusion?)
 	extern NA_MathsLib na_maths;
 	float intensity = (float) na_maths.dice(100);
@@ -88,7 +101,7 @@ void NA_Pig::draw()
 	//glutSolidSphere(2, 15, 2);
 	pigObj.render();
 	
-
+	glDisable(GL_TEXTURE_2D);
 	glUseProgram(0); //disable pig heatlamp shader
 	glPopMatrix();
 	
@@ -100,8 +113,8 @@ void NA_Pig::init()
 
 	int x, y, comp;
 	
-	unsigned char* data =  stbi_load("Pig/pig.tga", &x, &y, &comp, 4);
-	if (data == NULL)
+	rawLoadedTexture =  stbi_load("Pig/pig.bmp", &x, &y, &comp, 4);
+	if (rawLoadedTexture == NULL)
 		std::cout << "NA_Pig::init - stbi_load returned null\n";
 
 	//https://open.gl/textures
@@ -116,10 +129,10 @@ void NA_Pig::init()
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	//glGenerateMipmap(GL_TEXTURE_2D);
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, 2, 2, 0, GL_RGB, GL_UNSIGNED_BYTE, data);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, 2, 2, 0, GL_RGB, GL_UNSIGNED_BYTE, rawLoadedTexture);
 
 	//texture is copied to openGL now, can delete here
-	stbi_image_free(data);
+	
 
 	pigObj.objloader("Pig/pig.obj");
 	pigObj.id_texture = tex;

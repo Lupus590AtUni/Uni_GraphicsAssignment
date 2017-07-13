@@ -2,8 +2,8 @@
 
 //uniform vec3	pigPos; //TODO: can I interigate for this too, or do I have to pass it?
 
-const float		lightWeighting = 0.5;
-const float		textureWeighting = 0.5;
+const float		lightWeighting = 0.75;
+const float		textureWeighting = 0.25;
 
 
 const float		PI = 3.14;
@@ -81,9 +81,13 @@ void main(void)
 	//http://www.opengl-tutorial.org/beginners-tutorials/tutorial-5-a-textured-cube/
 	vec4 textureColour = vec4(texture2D(grabTexture, texCoord.xy)); // TODO: why is this blank?
 
-	gl_FragColor = textureColour.rgb; //don't do rgba
+	vec4 col = vec4(textureColour.rgb, 1.0);
+	col.r *= 1.0;
+	col.g *= 1.0;
+	
+	gl_FragColor = (col);
 
-	//gl_FragColor = (lightingColour * lightWeighting) + (textureColour * textureWeighting);
+	//gl_FragColor = (lightingColour * lightWeighting) + (textureColour.rgb * textureWeighting);
 
 	//simple check to make sure that shader compiles
 	vec3 lP = vec3(abs(gl_LightSource[0].position.x/100), abs(gl_LightSource[0].position.y/100), abs(gl_LightSource[0].position.z/100));

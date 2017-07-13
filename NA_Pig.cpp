@@ -110,7 +110,6 @@ void NA_Pig::draw()
 
 void NA_Pig::init()
 {
-	//TODO: load texture
 
 	int x, y, comp;
 	
@@ -120,6 +119,8 @@ void NA_Pig::init()
 
 	//https://open.gl/textures
 	//https://open.gl/content/code/c3_multitexture.txt
+
+	//TODO: fix texturing
 	GLuint tex;
 	glGenTextures(1, &tex);
 	glBindTexture(GL_TEXTURE_2D, tex);
@@ -129,8 +130,8 @@ void NA_Pig::init()
 	glTexParameterfv(GL_TEXTURE_2D, GL_TEXTURE_BORDER_COLOR, color);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-	//glGenerateMipmap(GL_TEXTURE_2D);
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, 4, 4, 0, GL_RGB, GL_UNSIGNED_BYTE, rawLoadedTexture);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, x, y, 0, GL_RGB, GL_UNSIGNED_BYTE, rawLoadedTexture);
+	
 
 	//texture is copied to openGL now, can delete here
 	

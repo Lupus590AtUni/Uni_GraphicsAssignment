@@ -91,7 +91,7 @@ void NA_Pig::draw()
 	glActiveTexture(pigObj.id_texture); //the shader can use this texture
 
 	cShader *pList = graphics.ShaderInfo.getList();
-	//glUseProgram( pList[1].program()); //shader on: no pig // fixed, was vertex shader being empty, replaced it with intensity.vert
+	glUseProgram( pList[1].program()); //shader on: no pig // fixed, was vertex shader being empty, replaced it with intensity.vert
 										//shader off: ambient light only (tiny amount of diffuse or an illusion?)
 	extern NA_MathsLib na_maths;
 	float intensity = (float) na_maths.dice(100);

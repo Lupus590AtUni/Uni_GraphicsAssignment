@@ -84,13 +84,15 @@ void NA_Pig::draw()
 	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 	glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_DECAL);
 
-	glTexImage2D(GL_TEXTURE_2D, 0, 3, 128, 128, 0, GL_RGBA,
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, 4, 4, 0, GL_RGBA,
 		GL_UNSIGNED_BYTE, rawLoadedTexture);
+
+	int sz = sizeof(rawLoadedTexture);
 
 	glActiveTexture(pigObj.id_texture);
 
 	cShader *pList = graphics.ShaderInfo.getList();
-	glUseProgram(0);// pList[1].program()); //shader on: no pig // fixed, was vertex shader being empty, replaced it with intensity.vert
+	glUseProgram( pList[1].program()); //shader on: no pig // fixed, was vertex shader being empty, replaced it with intensity.vert
 										//shader off: ambient light only (tiny amount of diffuse or an illusion?)
 	extern NA_MathsLib na_maths;
 	float intensity = (float) na_maths.dice(100);

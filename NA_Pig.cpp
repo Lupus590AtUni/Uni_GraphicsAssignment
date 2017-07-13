@@ -88,7 +88,7 @@ void NA_Pig::draw()
 
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, 4, 4, 0, GL_RGBA, GL_UNSIGNED_BYTE, rawLoadedTexture);*/
 
-	glActiveTexture(pigObj.id_texture);
+	glActiveTexture(pigObj.id_texture); //the shader can use this texture
 
 	cShader *pList = graphics.ShaderInfo.getList();
 	//glUseProgram( pList[1].program()); //shader on: no pig // fixed, was vertex shader being empty, replaced it with intensity.vert

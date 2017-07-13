@@ -2,12 +2,15 @@
 
 //uniform vec3	pigPos; //TODO: can I interigate for this too, or do I have to pass it?
 
+const float		lightWeighting = 0.5;
+const float		textureWeighting = 0.5;
+
 
 const float		PI = 3.14;
 const float		lightIntensity = 1.0;
-const float		constFudge = 0.25;
-const float		linearFudge = 0.005;
-const float		quadraticFudge = 0.025;
+const float		constFudge = 1;
+const float		linearFudge = 1;
+const float		quadraticFudge = 1;
 
 float rend	= 250.0;
 float rstart = 50.0;
@@ -40,8 +43,7 @@ void main(void)
 
 	vec3 t = vec3(lightPos - pigPos);
 
-	float distToLight = length(t); //this line errors on kim's laptop, possible reasson to why light distance thing don't work
-//	float distToLight = Intensity; //confirmed, this is issue for light distance not affecting brightness on object
+	float distToLight = length(t); 
 
 	float d = dot(normNormal.xyz, normLightPos.xyz);
 	if(d > 0.0)//facing the light
@@ -57,11 +59,13 @@ void main(void)
 			{
 			falloff = rend-distToLight / rend-rstart;
 			}
+		
+		effectiveIntesity = d*lightIntensity * falloff;
 
 
 
 
-		effectiveIntesity = d*lightIntensity * falloff;// (1.0/(constFudge+(quadraticFudge*distToLight*distToLight))); //+ (linearFudge*distToLight) );// +(quadraticFudge*distToLight*distToLight));
+		//effectiveIntesity = d*lightIntensity * (1.0/(constFudge + (linearFudge*distToLight) +(quadraticFudge*distToLight*distToLight)));
 
 	}
 	else
@@ -70,12 +74,16 @@ void main(void)
 	}
 
 	//TODO: change the colour of the pixel
-	gl_FragColor = vec4(vec4( 1.0 ) * effectiveIntesity); //TODO: improve
+	vec4 lightingColour = vec4(vec4( 1.0 ) * effectiveIntesity); //TODO: improve
 	
 
 	//texturing stuff
 	//http://www.opengl-tutorial.org/beginners-tutorials/tutorial-5-a-textured-cube/
-//	gl_FragColor = vec4(texture2D(grabTexture, texCoord.xy),1.0);
+	vec4 textureColour = vec4(texture2D(grabTexture, texCoord.xy));
+
+	gl_FragColor = textureColour;
+
+	//gl_FragColor = (lightingColour * lightWeighting) + (textureColour * textureWeighting);
 
 	//simple check to make sure that shader compiles
 	vec3 lP = vec3(abs(gl_LightSource[0].position.x/100), abs(gl_LightSource[0].position.y/100), abs(gl_LightSource[0].position.z/100));

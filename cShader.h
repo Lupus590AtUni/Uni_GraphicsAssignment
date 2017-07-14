@@ -20,6 +20,8 @@ public:
 	{
 		return m_intensity;
 	}
+	//inline GLint	get_heatValues() { return m_heatValues; }
+	//inline void		set_heatValues(GLint newValue) { m_heatValues}
 	inline GLint	MVMatrix(){return m_MVMatrix;}
 	inline GLint	MVPMatrix(){return m_MVPMatrix;}
 
@@ -38,6 +40,7 @@ private:
 
 	GLint	m_grabLoc;
 	GLint	m_intensity;
+	GLint	m_heatValues;
 	GLint	m_MVMatrix;
 	GLint	m_MVPMatrix;
 };

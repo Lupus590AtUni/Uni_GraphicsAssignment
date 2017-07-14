@@ -102,6 +102,7 @@ void cShader::create(char *pVertexShader_path, char *pFragmentShader_Path)
 
 	m_grabLoc			= glGetUniformLocation(m_program, "grabTexture");
 	m_intensity			= glGetUniformLocation(m_program, "Intensity" );
+	//m_heatValues		= glGetVaryingLocationNV(m_program, "HeatValues");
 	
 //	m_MVMatrix			= glGetUniformLocation(m_program, "MVMatrix" );
 //	m_MVPMatrix			= glGetUniformLocation(m_program, "MVPMatrix" );

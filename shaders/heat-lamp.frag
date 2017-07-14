@@ -1,6 +1,6 @@
 
 
-//uniform vec3	pigPos; //TODO: can I interigate for this too, or do I have to pass it?
+
 
 const float		lightWeighting = 0.75;
 const float		textureWeighting = 0.25;
@@ -18,6 +18,7 @@ float rstart = 50.0;
 
 uniform float		Intensity;
 uniform sampler2D	grabTexture;
+//varying	sampler2D	HeatValues
 
 varying vec3		Normal;
 varying vec3		Vertex;

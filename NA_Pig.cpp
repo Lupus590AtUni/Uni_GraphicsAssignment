@@ -98,6 +98,7 @@ void NA_Pig::draw()
 
 	glUniform1i(pList[1].get_grabLoc(), pigObj.id_texture);
 	glUniform1f(pList[1].intensity(), intensity);
+	//glUniform1f(pList[1].get_heatValues(), heatValuesPsudoTexture);
 
 	//glutSolidSphere(2, 15, 2);
 	pigObj.render();
@@ -134,7 +135,13 @@ void NA_Pig::init()
 	
 
 	//texture is copied to openGL now, can delete here
-	
+
+	// would this work?
+	//glGenTextures(1, &heatValuesPsudoTexture);
+	//glBindTexture(GL_TEXTURE_2D, heatValuesPsudoTexture);
+	//float rawHeatValues[SCREEN_WIDTH][SCREEN_HEIGHT];
+	//memset(rawHeatValues, 0.0f, SCREEN_WIDTH*SCREEN_HEIGHT * sizeof(float));
+	//glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, SCREEN_WIDTH, SCREEN_HEIGHT, 0, GL_RGB, GL_FLOAT, rawHeatValues);
 
 	pigObj.objloader("Pig/pig.obj");
 	pigObj.id_texture = tex;

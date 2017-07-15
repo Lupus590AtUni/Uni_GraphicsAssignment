@@ -8,9 +8,9 @@ const float		textureWeighting = 0.25;
 
 const float		PI = 3.14;
 const float		lightIntensity = 1.0;
-const float		constFudge = 1;
-const float		linearFudge = 1;
-const float		quadraticFudge = 1;
+const float		constFudge = 0.025;
+const float		linearFudge = 0.025;
+const float		quadraticFudge = 0.05;
 
 float rend	= 250.0;
 float rstart = 50.0;
@@ -42,9 +42,9 @@ void main(void)
 
 	vec3 normNormal = normalize(vec3(Normal.xyz));
 
-	vec3 t = vec3(lightPos - pigPos);
+	vec3 t = vec3(pigPos - lightPos);
 
-	float distToLight = length(t); 
+	float distToLight = length(t);
 
 	float d = dot(normNormal.xyz, normLightPos.xyz);
 	if(d > 0.0)//facing the light
@@ -66,7 +66,7 @@ void main(void)
 
 
 
-		//effectiveIntesity = d*lightIntensity * (1.0/(constFudge + (linearFudge*distToLight) +(quadraticFudge*distToLight*distToLight)));
+		effectiveIntesity = d*lightIntensity * (1.0/(constFudge + (linearFudge*distToLight) +(quadraticFudge*distToLight*distToLight)));
 
 	}
 	else
@@ -77,6 +77,7 @@ void main(void)
 	//TODO: change the colour of the pixel
 	vec4 lightingColour = vec4(vec4( 1.0 ) * effectiveIntesity); //TODO: improve
 	
+	//gl_FragColor = lightingColour;
 
 	//texturing stuff
 	//http://www.opengl-tutorial.org/beginners-tutorials/tutorial-5-a-textured-cube/
@@ -92,5 +93,8 @@ void main(void)
 
 	//simple check to make sure that shader compiles
 	vec3 lP = vec3(abs(gl_LightSource[0].position.x/100), abs(gl_LightSource[0].position.y/100), abs(gl_LightSource[0].position.z/100));
-	//gl_FragColor = vec4( lP.x, lP.y, lP.z, 1.0 );
+	vec4 r = vec4( lP.x, lP.y, lP.z, 1.0 );
+	gl_FragColor = r;
+
+	gl_FragColor = (lightingColour * lightWeighting) + (r * textureWeighting);
 }

@@ -83,18 +83,18 @@ void main(void)
 	//http://www.opengl-tutorial.org/beginners-tutorials/tutorial-5-a-textured-cube/
 	vec4 textureColour = vec4(texture2D(grabTexture, texCoord.xy)); // TODO: why is this blank?
 
-	vec4 col = vec4(textureColour.rgb, 1.0);
-	col.r *= 1.0;
-	col.g *= 1.0;
+	//vec4 col = vec4(textureColour.rgb, 1.0);
+	//col.r *= 1.0;
+	//col.g *= 1.0;
 	
-	gl_FragColor = (col);
+	gl_FragColor = (textureColour);
 
 	//gl_FragColor = (lightingColour * lightWeighting) + (textureColour.rgb * textureWeighting);
 
 	//simple check to make sure that shader compiles
 	vec3 lP = vec3(abs(gl_LightSource[0].position.x/100), abs(gl_LightSource[0].position.y/100), abs(gl_LightSource[0].position.z/100));
 	vec4 r = vec4( lP.x, lP.y, lP.z, 1.0 );
-	gl_FragColor = r;
+	//gl_FragColor = r;
 
-	gl_FragColor = (lightingColour * lightWeighting) + (r * textureWeighting);
+	//gl_FragColor = (lightingColour * lightWeighting) + (r * textureWeighting);
 }

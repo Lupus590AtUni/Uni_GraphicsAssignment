@@ -80,16 +80,15 @@ void NA_Pig::draw()
 	//https://www.opengl.org/archives/resources/code/samples/glut_examples/examples/examples.html
 	glEnable(GL_TEXTURE_2D);
 
-	//this does the texturing correctly but can't be used by the shader
-	/*glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+	//apparently the shader needs this
+	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
 	glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_DECAL);
 
-	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, 4, 4, 0, GL_RGBA, GL_UNSIGNED_BYTE, rawLoadedTexture);*/
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, 4, 4, 0, GL_RGBA, GL_UNSIGNED_BYTE, rawLoadedTexture);
 
 	glActiveTexture(pigObj.id_texture); //the shader can use this texture
-	
 
 	cShader *pList = graphics.ShaderInfo.getList();
 	glUseProgram( pList[1].program()); //shader on: no pig // fixed, was vertex shader being empty, replaced it with intensity.vert

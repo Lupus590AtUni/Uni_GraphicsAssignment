@@ -89,7 +89,7 @@ void main(void)
 	
 	gl_FragColor = (textureColour);
 
-	//gl_FragColor = (lightingColour * lightWeighting) + (textureColour.rgb * textureWeighting);
+	gl_FragColor = (lightingColour * lightWeighting) + (textureColour * textureWeighting);
 
 	//simple check to make sure that shader compiles
 	vec3 lP = vec3(abs(gl_LightSource[0].position.x/100), abs(gl_LightSource[0].position.y/100), abs(gl_LightSource[0].position.z/100));

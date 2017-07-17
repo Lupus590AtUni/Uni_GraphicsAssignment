@@ -17,6 +17,12 @@ NA_HeatLamp::~NA_HeatLamp()
 void NA_HeatLamp::draw()
 {
 	glPushMatrix();
+
+	// fixes heat lamp tuning red
+	glActiveTexture(GL_TEXTURE0);
+	glDisable(GL_TEXTURE_2D);
+	glUseProgram(0);
+
 	glLoadIdentity();
 	glTranslatef(pos.x, pos.y, pos.z);
 	glutSolidSphere(radius, 15, 2);

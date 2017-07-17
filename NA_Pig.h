@@ -6,7 +6,8 @@ class NA_Pig
 private:
 	object_type pigObj;
 	unsigned char* rawLoadedTexture = NULL;
-	//GLuint heatValuesPsudoTexture;
+	unsigned char* heatValuesPsudoTexture = NULL;
+	GLuint heatValuesTexID;
 public:
 	NA_Pig();
 	~NA_Pig();

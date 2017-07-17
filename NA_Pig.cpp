@@ -16,7 +16,16 @@ NA_Pig pig;
 
 NA_Pig::~NA_Pig()
 {
-	STBI_FREE(rawLoadedTexture);
+	if (rawLoadedTexture != NULL)
+	{
+		STBI_FREE(rawLoadedTexture);
+		rawLoadedTexture = NULL;
+	}
+	if (heatValuesPsudoTexture != NULL)
+	{
+		delete(heatValuesPsudoTexture);
+		heatValuesPsudoTexture = NULL;
+	}
 }
 
 void NA_Pig::draw()
@@ -88,7 +97,15 @@ void NA_Pig::draw()
 
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, 4, 4, 0, GL_RGBA, GL_UNSIGNED_BYTE, rawLoadedTexture);
 
+	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_NEAREST);
+	glTexEnvf(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_DECAL);
+
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, SCREEN_WIDTH*SCREEN_HEIGHT, 0, 0, GL_RGB, GL_UNSIGNED_BYTE, &heatValuesPsudoTexture);
+
 	glActiveTexture(pigObj.id_texture); //the shader can use this texture
+	glActiveTexture(heatValuesTexID);
 
 	cShader *pList = graphics.ShaderInfo.getList();
 	glUseProgram( pList[1].program()); //shader on: no pig // fixed, was vertex shader being empty, replaced it with intensity.vert
@@ -98,11 +115,12 @@ void NA_Pig::draw()
 
 	glUniform1i(pList[1].get_grabLoc(), pigObj.id_texture);
 	glUniform1f(pList[1].intensity(), intensity);
-	//glUniform1f(pList[1].get_heatValues(), heatValuesPsudoTexture);
+	glUniform1f(pList[1].get_heatValueGrabLoc(), heatValuesTexID);
 
 	//glutSolidSphere(2, 15, 2);
 	pigObj.render();
 	
+	glActiveTexture(GL_TEXTURE0);
 	glDisable(GL_TEXTURE_2D);
 	glUseProgram(0); //disable pig heatlamp shader
 	glPopMatrix();
@@ -121,10 +139,11 @@ void NA_Pig::init()
 	//https://open.gl/textures
 	//https://open.gl/content/code/c3_multitexture.txt
 
-	//TODO: fix texturing
+	//texturing stuff
+	glActiveTexture(GL_TEXTURE1);
 	GLuint tex;
 	glGenTextures(1, &tex);
-	glBindTexture(GL_TEXTURE_2D, tex);
+	glBindTexture(GL_TEXTURE_2D_ARRAY_EXT, tex);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 	float color[] = { 1.0f, 1.0f, 1.0f, 1.0f };
@@ -133,19 +152,26 @@ void NA_Pig::init()
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, x, y, 0, GL_RGB, GL_UNSIGNED_BYTE, rawLoadedTexture);
 
-	
+	//heat lamp psudo texture
+	glActiveTexture(GL_TEXTURE2);
+	GLuint heat;
+	glGenTextures(1, &heat);
+	glBindTexture(GL_TEXTURE_2D_ARRAY_EXT, heat);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+	float heatColor[] = { 1.0f, 1.0f, 1.0f, 1.0f };
+	glTexParameterfv(GL_TEXTURE_2D, GL_TEXTURE_BORDER_COLOR, heatColor);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 
-	//texture is copied to openGL now, can delete here
+	heatValuesPsudoTexture = new unsigned char[SCREEN_HEIGHT*SCREEN_WIDTH];
+	memset(heatValuesPsudoTexture, 255, sizeof(unsigned char)*SCREEN_HEIGHT*SCREEN_WIDTH);
 
-	// would this work?
-	//glGenTextures(1, &heatValuesPsudoTexture);
-	//glBindTexture(GL_TEXTURE_2D, heatValuesPsudoTexture);
-	//float rawHeatValues[SCREEN_WIDTH][SCREEN_HEIGHT];
-	//memset(rawHeatValues, 0.0f, SCREEN_WIDTH*SCREEN_HEIGHT * sizeof(float));
-	//glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, SCREEN_WIDTH, SCREEN_HEIGHT, 0, GL_RGB, GL_FLOAT, rawHeatValues);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, SCREEN_WIDTH*SCREEN_HEIGHT, 0, 0, GL_RGB, GL_UNSIGNED_BYTE, &heatValuesPsudoTexture);
+	heatValuesTexID = GL_TEXTURE2;
 
 	pigObj.objloader("Pig/pig.obj");
-	pigObj.id_texture = GL_TEXTURE0; //https://gamedev.stackexchange.com/questions/144828/why-is-my-texture-not-applied-correctly-in-opengl-2-0-with-glsl
+	pigObj.id_texture = GL_TEXTURE1; //https://gamedev.stackexchange.com/questions/144828/why-is-my-texture-not-applied-correctly-in-opengl-2-0-with-glsl
 
 	extern NA_MathsLib na_maths;
 	na_maths.seedDice();

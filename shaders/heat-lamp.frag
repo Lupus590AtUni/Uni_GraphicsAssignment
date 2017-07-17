@@ -2,8 +2,9 @@
 
 
 
-const float		lightWeighting = 0.75;
+const float		lightWeighting = 0.5;
 const float		textureWeighting = 0.25;
+const float		heatWeighting = 0.25;
 
 
 const float		PI = 3.14;
@@ -18,7 +19,7 @@ float rstart = 50.0;
 
 uniform float		Intensity;
 uniform sampler2D	grabTexture;
-//varying	sampler2D	HeatValues
+uniform	sampler2D	HeatValues;
 
 varying vec3		Normal;
 varying vec3		Vertex;
@@ -89,7 +90,12 @@ void main(void)
 	
 	gl_FragColor = (textureColour);
 
-	gl_FragColor = (lightingColour * lightWeighting) + (textureColour * textureWeighting);
+
+	vec4 heatColour = vec4(texture2D(HeatValues, texCoord.xy));
+
+	gl_FragColor = heatColour;
+
+	//gl_FragColor = (lightingColour * lightWeighting) + (textureColour * textureWeighting) + (heatColour * heatWeighting);
 
 	//simple check to make sure that shader compiles
 	vec3 lP = vec3(abs(gl_LightSource[0].position.x/100), abs(gl_LightSource[0].position.y/100), abs(gl_LightSource[0].position.z/100));

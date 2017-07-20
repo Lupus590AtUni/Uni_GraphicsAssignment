@@ -60,7 +60,7 @@ void main(void)
 			falloff = 0.0;
 			else
 			{
-			falloff = rend-distToLight / rend-rstart;
+			falloff = (rend-distToLight) / (rend-rstart);
 			}
 		
 		effectiveIntesity = d*lightIntensity * falloff;
@@ -90,7 +90,10 @@ void main(void)
 	//gl_FragColor = (textureColour);
 
 
-	vec4 heatColour = vec4(texture2D(HeatValues, heatCoord.xy));
+	vec4 heatColour = vec4(texture2D(HeatValues, heatCoord.xy)); // Options for calculating this:
+																	// openGL frame buffer
+																	// c++ calculated, bake into texture for shader to use
+																	// c++ calculated, assign as vertex attributes (requires modification of object loader/renderer)
 
 	gl_FragColor = heatColour;
 

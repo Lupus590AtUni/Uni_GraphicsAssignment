@@ -28,6 +28,7 @@ void update()
 {
 	// add any update code here...
 
+	// heatlamp should be attached to the mouse cursor
 	heatLamp.pos.x = graphics.mousePos.x;
 	heatLamp.pos.y = graphics.mousePos.y;
 	heatLamp.pos.z = 0;

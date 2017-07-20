@@ -1,21 +1,13 @@
 
 
-
-
 const float		lightWeighting = 0.25;
 const float		textureWeighting = 0.25;
 const float		heatWeighting = 0.25;
 
-
-const float		PI = 3.14;
 const float		lightIntensity = 1.0;
 const float		constFudge = 0.025;
 const float		linearFudge = 0.025;
 const float		quadraticFudge = 0.05;
-
-float rend	= 250.0;
-float rstart = 50.0;
-
 
 uniform float		Intensity;
 uniform sampler2D	grabTexture;
@@ -51,32 +43,13 @@ void main(void)
 	float d = dot(normNormal.xyz, normLightPos.xyz);
 	if(d > 0.0)//facing the light
 	{
-		float falloff;
-
-		if( distToLight < rstart )
-			falloff = 1.0;
-		else
-		if( distToLight > rend )
-			falloff = 0.0;
-			else
-			{
-			falloff = (rend-distToLight) / (rend-rstart);
-			}
-		
-		effectiveIntesity = d*lightIntensity * falloff;
-
-
-
-
 		effectiveIntesity = d*lightIntensity * (1.0/(constFudge + (linearFudge*distToLight) +(quadraticFudge*distToLight*distToLight)));
-
 	}
 	else
 	{
 		effectiveIntesity = 0.0;
 	}
 
-	//TODO: change the colour of the pixel
 	vec4 lightingColour = vec4(vec4( 1.0 ) * effectiveIntesity); //TODO: improve
 	
 	//gl_FragColor = lightingColour;
@@ -95,7 +68,7 @@ void main(void)
 																	// c++ calculated, bake into texture for shader to use
 																	// c++ calculated, assign as vertex attributes (requires modification of object loader/renderer)
 
-	gl_FragColor = heatColour;
+	//gl_FragColor = heatColour;
 
 	gl_FragColor = (lightingColour * lightWeighting) + (textureColour * textureWeighting) + (heatColour * heatWeighting);
 
@@ -103,6 +76,4 @@ void main(void)
 	vec3 lP = vec3(abs(gl_LightSource[0].position.x/100), abs(gl_LightSource[0].position.y/100), abs(gl_LightSource[0].position.z/100));
 	vec4 r = vec4( lP.x, lP.y, lP.z, 1.0 );
 	//gl_FragColor = r;
-
-	//gl_FragColor = (lightingColour * lightWeighting) + (r * textureWeighting);
 }

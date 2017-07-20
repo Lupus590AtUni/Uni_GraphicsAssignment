@@ -1,5 +1,8 @@
 #pragma once
 
+// unused and incomplete code
+
+
 #include "stdafx.h"
 #define GLM_FORCE_RADIANS 
 #include "glm/glm.hpp"

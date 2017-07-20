@@ -1,3 +1,5 @@
+// unused and incomplete code
+
 #include "stdafx.h"
 #include "NA_ObjLoader.h"
 #include <fstream>

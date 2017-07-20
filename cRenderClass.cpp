@@ -318,7 +318,7 @@ void mouse(int x, int y)
 
 void key(unsigned char c, int x, int y)
 {
-	//LOW: reload shader?
+	// allow rotation of pig, this was helpful for texture debugging
 	extern NA_Pig pig;
 	switch (c)
 	{
@@ -344,22 +344,5 @@ void key(unsigned char c, int x, int y)
 
 void click(int button, int state, int x, int y)
 {
-	//cout << "click\n";
-	if (button == GLUT_LEFT_BUTTON)
-	{
-		//cout << "left mouse\n";
-		if (state == GLUT_DOWN)
-		{
-			//do stuff when mouse down
-			//cout << "down\n";
-			
-			mouse(x, y);
-			//cout << "mouseIsScary " << mouseIsScary << "\n";
-		}
-		else
-		{
-			//do stuff when mouse up
-		}
-	}
 
 }

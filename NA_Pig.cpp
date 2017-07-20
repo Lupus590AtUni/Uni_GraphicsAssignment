@@ -40,52 +40,13 @@ void NA_Pig::draw()
 	
 	extern cRenderClass graphics;
 
-	//Shader Stuff
-	//cShader *pList = graphics.ShaderInfo.getList();
-	//int shdr = 1;
-
-	//if (shdr >= graphics.ShaderInfo.shaderCount())
-	//{
-	//	printf("Error: Can't access requested shader\n");
-	//	shdr = 0;
-	//}
-
-	//// enable shader program..
-	//glUseProgram(pList[shdr].program());
-
-	//glUniform1fv(glGetAttribLocation(shaderID, variableNameAsString), sizeOfArray, valueAsArray)
-	//glUniform1f(glGetAttribLocation(shaderID, variableNameAsString), value);
-
-	//glUseProgram(shaderID);
-
-
-	
-
-	
-	
-	
-
-
-	
-
-
-
-	//glutSolidSphere(12, 120, 2);
 	int size = 50;
 	glScaled(size, size, size);
-
-	
-
-	
 
 	// MATERIAL PROPERTISE
 	GLfloat ambient[4] = { 1.0,1.0,1.0,1.0 };
 	GLfloat diffuse[4] = { 1.0,1.0,1.0,1.0 };
 	GLfloat specular[4] = { 1.0,1.0,1.0,1.0 };
-
-	//glMaterialfv(GL_FRONT, GL_AMBIENT, ambient);
-	//glMaterialfv(GL_FRONT, GL_DIFFUSE, diffuse);
-	//glMaterialfv(GL_FRONT, GL_SPECULAR, specular);
 
 	// activate texture for application is shader
 	//https://www.opengl.org/archives/resources/code/samples/glut_examples/examples/examples.html
@@ -110,8 +71,8 @@ void NA_Pig::draw()
 	glActiveTexture(heatValuesTexID);
 
 	cShader *pList = graphics.ShaderInfo.getList();
-	glUseProgram( pList[1].program()); //shader on: no pig // fixed, was vertex shader being empty, replaced it with intensity.vert
-										//shader off: ambient light only (tiny amount of diffuse or an illusion?)
+	glUseProgram( pList[1].program());
+
 	extern NA_MathsLib na_maths;
 	float intensity = (float) na_maths.dice(100);
 
@@ -121,7 +82,7 @@ void NA_Pig::draw()
 
 	
 
-	//glutSolidSphere(2, 15, 2);
+	//glutSolidSphere(2, 15, 2); // used for debug until obj loader was used
 	pigObj.render();
 	
 	glActiveTexture(GL_TEXTURE0);
@@ -136,7 +97,7 @@ void NA_Pig::init()
 
 	int x, y, comp;
 	
-	rawLoadedTexture =  stbi_load("Pig/debug2.bmp", &x, &y, &comp, 4);
+	rawLoadedTexture =  stbi_load("Pig/debug2.bmp", &x, &y, &comp, 4); // other file options "Pig/debug2.bmp" "Pig/debug.bmp" "Pig/bigPink.bmp" "Pig/pink.bmp"
 	if (rawLoadedTexture == NULL)
 		std::cout << "NA_Pig::init - stbi_load returned null\n";
 
@@ -174,12 +135,15 @@ void NA_Pig::init()
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGB, SCREEN_WIDTH*SCREEN_HEIGHT, 0, 0, GL_RGB, GL_UNSIGNED_BYTE, &heatValuesPsudoTexture);
 	heatValuesTexID = GL_TEXTURE2;
 
-	pigObj.objloader("Pig/pig.obj");
+	pigObj.objloader("Pig/pig.obj"); // other file options "Pig/pig.obj" "Pig/Cube.obj" "Pig/sphere.obj"
 	pigObj.id_texture = GL_TEXTURE1; //https://gamedev.stackexchange.com/questions/144828/why-is-my-texture-not-applied-correctly-in-opengl-2-0-with-glsl
 
 	extern NA_MathsLib na_maths;
 	na_maths.seedDice();
 }
+
+
+// abandoned code below
 
 //void NA_Pig::loadShader()
 //{

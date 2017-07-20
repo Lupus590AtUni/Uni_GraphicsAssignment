@@ -1,5 +1,5 @@
-//I am surprisingly important
-
+// I am surprisingly important
+// the fragment shader is where the work is done
 
 uniform float	Intensity;
 varying vec3	Normal;

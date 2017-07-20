@@ -319,6 +319,27 @@ void mouse(int x, int y)
 void key(unsigned char c, int x, int y)
 {
 	//LOW: reload shader?
+	extern NA_Pig pig;
+	switch (c)
+	{
+		case 'w':
+		case 'W':
+			pig.rotation.y = pig.rotation.y - 10.0f;
+			break;
+		case 's':
+		case 'S':
+			pig.rotation.y = pig.rotation.y + 10.0f;
+			break;
+		case 'a':
+		case 'A':
+			pig.rotation.x = pig.rotation.x + 10.0f;
+			break;
+		case 'd':
+		case 'D':
+			pig.rotation.x = pig.rotation.x - 10.0f;
+			break;
+	}
+
 }
 
 void click(int button, int state, int x, int y)

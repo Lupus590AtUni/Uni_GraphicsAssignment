@@ -33,6 +33,8 @@ void NA_Pig::draw()
 	glMatrixMode(GL_MODELVIEW);
 	glPushMatrix();
 	glLoadIdentity();
+	glRotatef(rotation.x,0, 1, 0);
+	glRotatef(rotation.y, 1, 0, 0);
 	glTranslatef(pos.x, pos.y, pos.z);
 	glShadeModel(GL_SMOOTH);
 	
@@ -117,6 +119,8 @@ void NA_Pig::draw()
 	glUniform1f(pList[1].intensity(), intensity);
 	glUniform1f(pList[1].get_heatValueGrabLoc(), heatValuesTexID);
 
+	
+
 	//glutSolidSphere(2, 15, 2);
 	pigObj.render();
 	
@@ -132,7 +136,7 @@ void NA_Pig::init()
 
 	int x, y, comp;
 	
-	rawLoadedTexture =  stbi_load("Pig/pig.bmp", &x, &y, &comp, 4);
+	rawLoadedTexture =  stbi_load("Pig/debug2.bmp", &x, &y, &comp, 4);
 	if (rawLoadedTexture == NULL)
 		std::cout << "NA_Pig::init - stbi_load returned null\n";
 

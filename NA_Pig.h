@@ -20,6 +20,8 @@ public:
 
 	int pigShader = 0;
 
+	glm::vec2 rotation;
+
 	void init();
 
 };

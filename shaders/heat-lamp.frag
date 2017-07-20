@@ -2,7 +2,7 @@
 
 
 
-const float		lightWeighting = 0.5;
+const float		lightWeighting = 0.25;
 const float		textureWeighting = 0.25;
 const float		heatWeighting = 0.25;
 
@@ -24,6 +24,7 @@ uniform	sampler2D	HeatValues;
 varying vec3		Normal;
 varying vec3		Vertex;
 varying vec2 		texCoord;
+varying vec2		heatCoord;
 
 void main(void)
 {	
@@ -45,7 +46,7 @@ void main(void)
 
 	vec3 t = vec3(pigPos - lightPos);
 
-	float distToLight = length(t);
+	float distToLight = length(t)/100;
 
 	float d = dot(normNormal.xyz, normLightPos.xyz);
 	if(d > 0.0)//facing the light
@@ -82,20 +83,18 @@ void main(void)
 
 	//texturing stuff
 	//http://www.opengl-tutorial.org/beginners-tutorials/tutorial-5-a-textured-cube/
-	vec4 textureColour = vec4(texture2D(grabTexture, texCoord.xy)); // TODO: why is this blank?
+	vec4 textureColour = vec4(texture2D(grabTexture, texCoord.xy)); 
 
-	//vec4 col = vec4(textureColour.rgb, 1.0);
-	//col.r *= 1.0;
-	//col.g *= 1.0;
 	
-	gl_FragColor = (textureColour);
+	
+	//gl_FragColor = (textureColour);
 
 
-	vec4 heatColour = vec4(texture2D(HeatValues, texCoord.xy));
+	vec4 heatColour = vec4(texture2D(HeatValues, heatCoord.xy));
 
 	gl_FragColor = heatColour;
 
-	//gl_FragColor = (lightingColour * lightWeighting) + (textureColour * textureWeighting) + (heatColour * heatWeighting);
+	gl_FragColor = (lightingColour * lightWeighting) + (textureColour * textureWeighting) + (heatColour * heatWeighting);
 
 	//simple check to make sure that shader compiles
 	vec3 lP = vec3(abs(gl_LightSource[0].position.x/100), abs(gl_LightSource[0].position.y/100), abs(gl_LightSource[0].position.z/100));
